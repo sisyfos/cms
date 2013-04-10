@@ -171,11 +171,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\cms.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
+    <Compile Include="Model\AccountModels.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Model\cms.Designer.cs">
       <DependentUpon>cms.edmx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -298,12 +300,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Models\cms.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>cms.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Category\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -332,6 +328,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Post\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="Model\cms.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>cms.Designer.cs</LastGenOutput>
+    </EntityDeploy>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,544 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="cms_2Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="cms_2ModelStoreContainer">
+          <EntitySet Name="Categories" EntityType="cms_2Model.Store.Categories" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Contents" EntityType="cms_2Model.Store.Contents" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Links" EntityType="cms_2Model.Store.Links" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Pictures" EntityType="cms_2Model.Store.Pictures" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Posts" EntityType="cms_2Model.Store.Posts" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Templates" EntityType="cms_2Model.Store.Templates" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Texts" EntityType="cms_2Model.Store.Texts" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Videos" EntityType="cms_2Model.Store.Videos" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Categories_Templates" Association="cms_2Model.Store.FK_Categories_Templates">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="Categories" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contents_Links" Association="cms_2Model.Store.FK_Contents_Links">
+            <End Role="Links" EntitySet="Links" />
+            <End Role="Contents" EntitySet="Contents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contents_Pictures" Association="cms_2Model.Store.FK_Contents_Pictures">
+            <End Role="Pictures" EntitySet="Pictures" />
+            <End Role="Contents" EntitySet="Contents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contents_Texts" Association="cms_2Model.Store.FK_Contents_Texts">
+            <End Role="Texts" EntitySet="Texts" />
+            <End Role="Contents" EntitySet="Contents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contents_Videos" Association="cms_2Model.Store.FK_Contents_Videos">
+            <End Role="Videos" EntitySet="Videos" />
+            <End Role="Contents" EntitySet="Contents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Posts_Categories" Association="cms_2Model.Store.FK_Posts_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Posts" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Posts_Contents" Association="cms_2Model.Store.FK_Posts_Contents">
+            <End Role="Contents" EntitySet="Contents" />
+            <End Role="Posts" EntitySet="Posts" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="CatID" />
+          </Key>
+          <Property Name="CatID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CatName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="CatPrio" Type="bigint" />
+          <Property Name="CatDesc" Type="nvarchar(max)" />
+          <Property Name="TempID" Type="bigint" Nullable="false" />
+          <Property Name="CatParentID" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Contents">
+          <Key>
+            <PropertyRef Name="ContentID" />
+          </Key>
+          <Property Name="ContentID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TextID" Type="bigint" />
+          <Property Name="PicID" Type="bigint" />
+          <Property Name="LinkID" Type="bigint" />
+          <Property Name="VidID" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Links">
+          <Key>
+            <PropertyRef Name="LinkID" />
+          </Key>
+          <Property Name="LinkID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LinkTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="LinkUrl" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="LinkText" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Pictures">
+          <Key>
+            <PropertyRef Name="PicID" />
+          </Key>
+          <Property Name="PicID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PicTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="PicUrl" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="PicAltText" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="PicDesc" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Posts">
+          <Key>
+            <PropertyRef Name="PostID" />
+          </Key>
+          <Property Name="PostID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CatID" Type="bigint" Nullable="false" />
+          <Property Name="PostPrio" Type="bigint" Nullable="false" />
+          <Property Name="ContentID" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Templates">
+          <Key>
+            <PropertyRef Name="TempID" />
+          </Key>
+          <Property Name="TempID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TempName" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="TempDesc" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TempURL" Type="nvarchar" Nullable="false" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Texts">
+          <Key>
+            <PropertyRef Name="TextID" />
+          </Key>
+          <Property Name="TextID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TextTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="TextData" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Videos">
+          <Key>
+            <PropertyRef Name="VidID" />
+          </Key>
+          <Property Name="VidID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="VidTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="VidUrl" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="VidDesc" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_Categories_Templates">
+          <End Role="Templates" Type="cms_2Model.Store.Templates" Multiplicity="1" />
+          <End Role="Categories" Type="cms_2Model.Store.Categories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Templates">
+              <PropertyRef Name="TempID" />
+            </Principal>
+            <Dependent Role="Categories">
+              <PropertyRef Name="TempID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contents_Links">
+          <End Role="Links" Type="cms_2Model.Store.Links" Multiplicity="0..1" />
+          <End Role="Contents" Type="cms_2Model.Store.Contents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Links">
+              <PropertyRef Name="LinkID" />
+            </Principal>
+            <Dependent Role="Contents">
+              <PropertyRef Name="LinkID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contents_Pictures">
+          <End Role="Pictures" Type="cms_2Model.Store.Pictures" Multiplicity="0..1" />
+          <End Role="Contents" Type="cms_2Model.Store.Contents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pictures">
+              <PropertyRef Name="PicID" />
+            </Principal>
+            <Dependent Role="Contents">
+              <PropertyRef Name="PicID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contents_Texts">
+          <End Role="Texts" Type="cms_2Model.Store.Texts" Multiplicity="0..1" />
+          <End Role="Contents" Type="cms_2Model.Store.Contents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Texts">
+              <PropertyRef Name="TextID" />
+            </Principal>
+            <Dependent Role="Contents">
+              <PropertyRef Name="TextID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contents_Videos">
+          <End Role="Videos" Type="cms_2Model.Store.Videos" Multiplicity="0..1" />
+          <End Role="Contents" Type="cms_2Model.Store.Contents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Videos">
+              <PropertyRef Name="VidID" />
+            </Principal>
+            <Dependent Role="Contents">
+              <PropertyRef Name="VidID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Posts_Categories">
+          <End Role="Categories" Type="cms_2Model.Store.Categories" Multiplicity="1" />
+          <End Role="Posts" Type="cms_2Model.Store.Posts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CatID" />
+            </Principal>
+            <Dependent Role="Posts">
+              <PropertyRef Name="CatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Posts_Contents">
+          <End Role="Contents" Type="cms_2Model.Store.Contents" Multiplicity="1" />
+          <End Role="Posts" Type="cms_2Model.Store.Posts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contents">
+              <PropertyRef Name="ContentID" />
+            </Principal>
+            <Dependent Role="Posts">
+              <PropertyRef Name="ContentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="cms_2Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="cms_2Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categories" EntityType="cms_2Model.Category" />
+          <EntitySet Name="Contents" EntityType="cms_2Model.Content" />
+          <EntitySet Name="Links" EntityType="cms_2Model.Link" />
+          <EntitySet Name="Pictures" EntityType="cms_2Model.Picture" />
+          <EntitySet Name="Posts" EntityType="cms_2Model.Post" />
+          <EntitySet Name="Templates" EntityType="cms_2Model.Template" />
+          <EntitySet Name="Texts" EntityType="cms_2Model.Text" />
+          <EntitySet Name="Videos" EntityType="cms_2Model.Video" />
+          <AssociationSet Name="FK_Categories_Templates" Association="cms_2Model.FK_Categories_Templates">
+            <End Role="Templates" EntitySet="Templates" />
+            <End Role="Categories" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Posts_Categories" Association="cms_2Model.FK_Posts_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Posts" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contents_Links" Association="cms_2Model.FK_Contents_Links">
+            <End Role="Links" EntitySet="Links" />
+            <End Role="Contents" EntitySet="Contents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contents_Pictures" Association="cms_2Model.FK_Contents_Pictures">
+            <End Role="Pictures" EntitySet="Pictures" />
+            <End Role="Contents" EntitySet="Contents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contents_Texts" Association="cms_2Model.FK_Contents_Texts">
+            <End Role="Texts" EntitySet="Texts" />
+            <End Role="Contents" EntitySet="Contents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contents_Videos" Association="cms_2Model.FK_Contents_Videos">
+            <End Role="Videos" EntitySet="Videos" />
+            <End Role="Contents" EntitySet="Contents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Posts_Contents" Association="cms_2Model.FK_Posts_Contents">
+            <End Role="Contents" EntitySet="Contents" />
+            <End Role="Posts" EntitySet="Posts" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CatID" />
+          </Key>
+          <Property Name="CatID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CatName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CatPrio" Type="Int64" />
+          <Property Name="CatDesc" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="TempID" Type="Int64" Nullable="false" />
+          <Property Name="CatParentID" Type="Int64" />
+          <NavigationProperty Name="Template" Relationship="cms_2Model.FK_Categories_Templates" FromRole="Categories" ToRole="Templates" />
+          <NavigationProperty Name="Posts" Relationship="cms_2Model.FK_Posts_Categories" FromRole="Categories" ToRole="Posts" />
+        </EntityType>
+        <EntityType Name="Content">
+          <Key>
+            <PropertyRef Name="ContentID" />
+          </Key>
+          <Property Name="ContentID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TextID" Type="Int64" />
+          <Property Name="PicID" Type="Int64" />
+          <Property Name="LinkID" Type="Int64" />
+          <Property Name="VidID" Type="Int64" />
+          <NavigationProperty Name="Link" Relationship="cms_2Model.FK_Contents_Links" FromRole="Contents" ToRole="Links" />
+          <NavigationProperty Name="Picture" Relationship="cms_2Model.FK_Contents_Pictures" FromRole="Contents" ToRole="Pictures" />
+          <NavigationProperty Name="Text" Relationship="cms_2Model.FK_Contents_Texts" FromRole="Contents" ToRole="Texts" />
+          <NavigationProperty Name="Video" Relationship="cms_2Model.FK_Contents_Videos" FromRole="Contents" ToRole="Videos" />
+          <NavigationProperty Name="Posts" Relationship="cms_2Model.FK_Posts_Contents" FromRole="Contents" ToRole="Posts" />
+        </EntityType>
+        <EntityType Name="Link">
+          <Key>
+            <PropertyRef Name="LinkID" />
+          </Key>
+          <Property Name="LinkID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LinkTitle" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LinkUrl" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="LinkText" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Contents" Relationship="cms_2Model.FK_Contents_Links" FromRole="Links" ToRole="Contents" />
+        </EntityType>
+        <EntityType Name="Picture">
+          <Key>
+            <PropertyRef Name="PicID" />
+          </Key>
+          <Property Name="PicID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PicTitle" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="PicUrl" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="PicAltText" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="PicDesc" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Contents" Relationship="cms_2Model.FK_Contents_Pictures" FromRole="Pictures" ToRole="Contents" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="PostID" />
+          </Key>
+          <Property Name="PostID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CatID" Type="Int64" Nullable="false" />
+          <Property Name="PostPrio" Type="Int64" Nullable="false" />
+          <Property Name="ContentID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="cms_2Model.FK_Posts_Categories" FromRole="Posts" ToRole="Categories" />
+          <NavigationProperty Name="Content" Relationship="cms_2Model.FK_Posts_Contents" FromRole="Posts" ToRole="Contents" />
+        </EntityType>
+        <EntityType Name="Template">
+          <Key>
+            <PropertyRef Name="TempID" />
+          </Key>
+          <Property Name="TempID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TempName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="TempDesc" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="TempURL" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Categories" Relationship="cms_2Model.FK_Categories_Templates" FromRole="Templates" ToRole="Categories" />
+        </EntityType>
+        <EntityType Name="Text">
+          <Key>
+            <PropertyRef Name="TextID" />
+          </Key>
+          <Property Name="TextID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TextTitle" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="TextData" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Contents" Relationship="cms_2Model.FK_Contents_Texts" FromRole="Texts" ToRole="Contents" />
+        </EntityType>
+        <EntityType Name="Video">
+          <Key>
+            <PropertyRef Name="VidID" />
+          </Key>
+          <Property Name="VidID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VidTitle" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="VidUrl" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="VidDesc" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Contents" Relationship="cms_2Model.FK_Contents_Videos" FromRole="Videos" ToRole="Contents" />
+        </EntityType>
+        <Association Name="FK_Categories_Templates">
+          <End Role="Templates" Type="cms_2Model.Template" Multiplicity="1" />
+          <End Role="Categories" Type="cms_2Model.Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Templates">
+              <PropertyRef Name="TempID" />
+            </Principal>
+            <Dependent Role="Categories">
+              <PropertyRef Name="TempID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Posts_Categories">
+          <End Role="Categories" Type="cms_2Model.Category" Multiplicity="1" />
+          <End Role="Posts" Type="cms_2Model.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CatID" />
+            </Principal>
+            <Dependent Role="Posts">
+              <PropertyRef Name="CatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contents_Links">
+          <End Role="Links" Type="cms_2Model.Link" Multiplicity="0..1" />
+          <End Role="Contents" Type="cms_2Model.Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Links">
+              <PropertyRef Name="LinkID" />
+            </Principal>
+            <Dependent Role="Contents">
+              <PropertyRef Name="LinkID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contents_Pictures">
+          <End Role="Pictures" Type="cms_2Model.Picture" Multiplicity="0..1" />
+          <End Role="Contents" Type="cms_2Model.Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pictures">
+              <PropertyRef Name="PicID" />
+            </Principal>
+            <Dependent Role="Contents">
+              <PropertyRef Name="PicID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contents_Texts">
+          <End Role="Texts" Type="cms_2Model.Text" Multiplicity="0..1" />
+          <End Role="Contents" Type="cms_2Model.Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Texts">
+              <PropertyRef Name="TextID" />
+            </Principal>
+            <Dependent Role="Contents">
+              <PropertyRef Name="TextID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contents_Videos">
+          <End Role="Videos" Type="cms_2Model.Video" Multiplicity="0..1" />
+          <End Role="Contents" Type="cms_2Model.Content" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Videos">
+              <PropertyRef Name="VidID" />
+            </Principal>
+            <Dependent Role="Contents">
+              <PropertyRef Name="VidID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Posts_Contents">
+          <End Role="Contents" Type="cms_2Model.Content" Multiplicity="1" />
+          <End Role="Posts" Type="cms_2Model.Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contents">
+              <PropertyRef Name="ContentID" />
+            </Principal>
+            <Dependent Role="Posts">
+              <PropertyRef Name="ContentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="cms_2ModelStoreContainer" CdmEntityContainer="cms_2Entities">
+          <EntitySetMapping Name="Categories"><EntityTypeMapping TypeName="cms_2Model.Category"><MappingFragment StoreEntitySet="Categories">
+            <ScalarProperty Name="CatID" ColumnName="CatID" />
+            <ScalarProperty Name="CatName" ColumnName="CatName" />
+            <ScalarProperty Name="CatPrio" ColumnName="CatPrio" />
+            <ScalarProperty Name="CatDesc" ColumnName="CatDesc" />
+            <ScalarProperty Name="TempID" ColumnName="TempID" />
+            <ScalarProperty Name="CatParentID" ColumnName="CatParentID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Contents"><EntityTypeMapping TypeName="cms_2Model.Content"><MappingFragment StoreEntitySet="Contents">
+            <ScalarProperty Name="ContentID" ColumnName="ContentID" />
+            <ScalarProperty Name="TextID" ColumnName="TextID" />
+            <ScalarProperty Name="PicID" ColumnName="PicID" />
+            <ScalarProperty Name="LinkID" ColumnName="LinkID" />
+            <ScalarProperty Name="VidID" ColumnName="VidID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Links"><EntityTypeMapping TypeName="cms_2Model.Link"><MappingFragment StoreEntitySet="Links">
+            <ScalarProperty Name="LinkID" ColumnName="LinkID" />
+            <ScalarProperty Name="LinkTitle" ColumnName="LinkTitle" />
+            <ScalarProperty Name="LinkUrl" ColumnName="LinkUrl" />
+            <ScalarProperty Name="LinkText" ColumnName="LinkText" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Pictures"><EntityTypeMapping TypeName="cms_2Model.Picture"><MappingFragment StoreEntitySet="Pictures">
+            <ScalarProperty Name="PicID" ColumnName="PicID" />
+            <ScalarProperty Name="PicTitle" ColumnName="PicTitle" />
+            <ScalarProperty Name="PicUrl" ColumnName="PicUrl" />
+            <ScalarProperty Name="PicAltText" ColumnName="PicAltText" />
+            <ScalarProperty Name="PicDesc" ColumnName="PicDesc" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Posts"><EntityTypeMapping TypeName="cms_2Model.Post"><MappingFragment StoreEntitySet="Posts">
+            <ScalarProperty Name="PostID" ColumnName="PostID" />
+            <ScalarProperty Name="CatID" ColumnName="CatID" />
+            <ScalarProperty Name="PostPrio" ColumnName="PostPrio" />
+            <ScalarProperty Name="ContentID" ColumnName="ContentID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Templates"><EntityTypeMapping TypeName="cms_2Model.Template"><MappingFragment StoreEntitySet="Templates">
+            <ScalarProperty Name="TempID" ColumnName="TempID" />
+            <ScalarProperty Name="TempName" ColumnName="TempName" />
+            <ScalarProperty Name="TempDesc" ColumnName="TempDesc" />
+            <ScalarProperty Name="TempURL" ColumnName="TempURL" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Texts"><EntityTypeMapping TypeName="cms_2Model.Text"><MappingFragment StoreEntitySet="Texts">
+            <ScalarProperty Name="TextID" ColumnName="TextID" />
+            <ScalarProperty Name="TextTitle" ColumnName="TextTitle" />
+            <ScalarProperty Name="TextData" ColumnName="TextData" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Videos"><EntityTypeMapping TypeName="cms_2Model.Video"><MappingFragment StoreEntitySet="Videos">
+            <ScalarProperty Name="VidID" ColumnName="VidID" />
+            <ScalarProperty Name="VidTitle" ColumnName="VidTitle" />
+            <ScalarProperty Name="VidUrl" ColumnName="VidUrl" />
+            <ScalarProperty Name="VidDesc" ColumnName="VidDesc" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="cms">
+        <EntityTypeShape EntityType="cms_2Model.Category" Width="1.5" PointX="3" PointY="14.125" Height="2.5571907552083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="cms_2Model.Content" Width="1.5" PointX="3" PointY="1" Height="2.9417936197916656" IsExpanded="true" />
+        <EntityTypeShape EntityType="cms_2Model.Link" Width="1.5" PointX="0.75" PointY="1.5" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="cms_2Model.Picture" Width="1.5" PointX="0.75" PointY="5.375" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="cms_2Model.Post" Width="1.5" PointX="5.25" PointY="1.375" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="cms_2Model.Template" Width="1.5" PointX="0.75" PointY="14.5" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="cms_2Model.Text" Width="1.5" PointX="0.75" PointY="8.25" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="cms_2Model.Video" Width="1.5" PointX="0.75" PointY="10.875" Height="1.9802864583333317" IsExpanded="true" />
+        <AssociationConnector Association="cms_2Model.FK_Categories_Templates" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="15.490143229166666" />
+          <ConnectorPoint PointX="3" PointY="15.490143229166666" />
+        </AssociationConnector>
+        <AssociationConnector Association="cms_2Model.FK_Posts_Categories" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="15.403595377604166" />
+          <ConnectorPoint PointX="6" PointY="15.403595377604166" />
+          <ConnectorPoint PointX="6" PointY="3.5475878906249996" />
+        </AssociationConnector>
+        <AssociationConnector Association="cms_2Model.FK_Contents_Links" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.4901432291666667" />
+          <ConnectorPoint PointX="3" PointY="2.4901432291666667" />
+        </AssociationConnector>
+        <AssociationConnector Association="cms_2Model.FK_Contents_Pictures" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="6.4612939453125" />
+          <ConnectorPoint PointX="3.2604141666666666" PointY="6.4612939453124989" />
+          <ConnectorPoint PointX="3.4270808333333336" PointY="6.4612939453125" />
+          <ConnectorPoint PointX="3.75" PointY="6.4612939453125" />
+          <ConnectorPoint PointX="3.75" PointY="3.9417936197916656" />
+        </AssociationConnector>
+        <AssociationConnector Association="cms_2Model.FK_Contents_Texts" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="9.1439925130208337" />
+          <ConnectorPoint PointX="3.3437475" PointY="9.1439925130208337" />
+          <ConnectorPoint PointX="3.3437475" PointY="3.9417936197916656" />
+        </AssociationConnector>
+        <AssociationConnector Association="cms_2Model.FK_Contents_Videos" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="11.865143229166666" />
+          <ConnectorPoint PointX="4.1562525" PointY="11.865143229166666" />
+          <ConnectorPoint PointX="4.1562525" PointY="3.9417936197916656" />
+        </AssociationConnector>
+        <AssociationConnector Association="cms_2Model.FK_Posts_Contents" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="2.4612939453125" />
+          <ConnectorPoint PointX="5.25" PointY="2.4612939453125" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
