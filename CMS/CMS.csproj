@@ -171,10 +171,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Model\AccountModels.cs">
+    <Compile Include="Models\AccountModels.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Model\cms.Designer.cs">
+    <Compile Include="Models\cms.Designer.cs">
       <DependentUpon>cms.edmx</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -330,7 +330,7 @@
     <Content Include="Views\Post\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Model\cms.edmx">
+    <EntityDeploy Include="Models\cms.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>cms.Designer.cs</LastGenOutput>
     </EntityDeploy>

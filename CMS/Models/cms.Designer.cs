@@ -18,17 +18,17 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("cms_2Model", "FK_Categories_Templates", "Templates", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CMS.Model.Template), "Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Model.Category), true)]
-[assembly: EdmRelationshipAttribute("cms_2Model", "FK_Posts_Categories", "Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CMS.Model.Category), "Posts", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Model.Post), true)]
-[assembly: EdmRelationshipAttribute("cms_2Model", "FK_Contents_Links", "Links", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CMS.Model.Link), "Contents", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Model.Content), true)]
-[assembly: EdmRelationshipAttribute("cms_2Model", "FK_Contents_Pictures", "Pictures", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CMS.Model.Picture), "Contents", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Model.Content), true)]
-[assembly: EdmRelationshipAttribute("cms_2Model", "FK_Contents_Texts", "Texts", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CMS.Model.Text), "Contents", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Model.Content), true)]
-[assembly: EdmRelationshipAttribute("cms_2Model", "FK_Contents_Videos", "Videos", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CMS.Model.Video), "Contents", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Model.Content), true)]
-[assembly: EdmRelationshipAttribute("cms_2Model", "FK_Posts_Contents", "Contents", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CMS.Model.Content), "Posts", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Model.Post), true)]
+[assembly: EdmRelationshipAttribute("cms_2Model", "FK_Categories_Templates", "Templates", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CMS.Models.Template), "Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Category), true)]
+[assembly: EdmRelationshipAttribute("cms_2Model", "FK_Posts_Categories", "Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CMS.Models.Category), "Posts", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Post), true)]
+[assembly: EdmRelationshipAttribute("cms_2Model", "FK_Contents_Links", "Links", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CMS.Models.Link), "Contents", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Content), true)]
+[assembly: EdmRelationshipAttribute("cms_2Model", "FK_Contents_Pictures", "Pictures", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CMS.Models.Picture), "Contents", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Content), true)]
+[assembly: EdmRelationshipAttribute("cms_2Model", "FK_Contents_Texts", "Texts", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CMS.Models.Text), "Contents", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Content), true)]
+[assembly: EdmRelationshipAttribute("cms_2Model", "FK_Contents_Videos", "Videos", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CMS.Models.Video), "Contents", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Content), true)]
+[assembly: EdmRelationshipAttribute("cms_2Model", "FK_Posts_Contents", "Contents", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CMS.Models.Content), "Posts", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Post), true)]
 
 #endregion
 
-namespace CMS.Model
+namespace CMS.Models
 {
     #region Contexts
     
