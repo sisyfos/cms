@@ -1,0 +1,39 @@
+﻿@model CMS.Models.Post
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Post</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Category.CatName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Category.CatName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PostPrio)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PostPrio)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Content.ContentID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Content.ContentID)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

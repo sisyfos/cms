@@ -1,0 +1,36 @@
+﻿@model CMS.Models.Post
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Post</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Category.CatName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Category.CatName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PostPrio)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PostPrio)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Content.ContentID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Content.ContentID)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.PostID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
