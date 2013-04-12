@@ -1,0 +1,50 @@
+﻿@model CMS.Models.Link
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Link</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LinkTitle)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LinkTitle)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LinkUrl)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LinkUrl)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LinkText)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LinkText)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LinkPrio)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LinkPrio)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Category.CatName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Category.CatName)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.LinkID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

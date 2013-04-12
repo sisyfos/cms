@@ -19,12 +19,12 @@ using System.Runtime.Serialization;
 #region EDM Relationship Metadata
 
 [assembly: EdmRelationshipAttribute("cms_2Model", "FK_Categories_Templates", "Templates", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CMS.Models.Template), "Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Category), true)]
-[assembly: EdmRelationshipAttribute("cms_2Model", "FK_Posts_Categories", "Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CMS.Models.Category), "Posts", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Post), true)]
-[assembly: EdmRelationshipAttribute("cms_2Model", "FK_Contents_Links", "Links", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CMS.Models.Link), "Contents", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Content), true)]
-[assembly: EdmRelationshipAttribute("cms_2Model", "FK_Contents_Pictures", "Pictures", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CMS.Models.Picture), "Contents", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Content), true)]
-[assembly: EdmRelationshipAttribute("cms_2Model", "FK_Contents_Texts", "Texts", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CMS.Models.Text), "Contents", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Content), true)]
-[assembly: EdmRelationshipAttribute("cms_2Model", "FK_Contents_Videos", "Videos", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CMS.Models.Video), "Contents", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Content), true)]
-[assembly: EdmRelationshipAttribute("cms_2Model", "FK_Posts_Contents", "Contents", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CMS.Models.Content), "Posts", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Post), true)]
+[assembly: EdmRelationshipAttribute("cms_2Model", "FK_CategoryRelations_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CMS.Models.Category), "CategoryRelation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.CategoryRelation), true)]
+[assembly: EdmRelationshipAttribute("cms_2Model", "FK_CategoryRelations_Categories1", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CMS.Models.Category), "CategoryRelation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.CategoryRelation), true)]
+[assembly: EdmRelationshipAttribute("cms_2Model", "FK_Links_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CMS.Models.Category), "Link", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Link), true)]
+[assembly: EdmRelationshipAttribute("cms_2Model", "FK_Pictures_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CMS.Models.Category), "Picture", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Picture), true)]
+[assembly: EdmRelationshipAttribute("cms_2Model", "FK_Texts_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CMS.Models.Category), "Text", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Text), true)]
+[assembly: EdmRelationshipAttribute("cms_2Model", "FK_Videos_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CMS.Models.Category), "Video", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Video), true)]
 
 #endregion
 
@@ -95,22 +95,6 @@ namespace CMS.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Content> Contents
-        {
-            get
-            {
-                if ((_Contents == null))
-                {
-                    _Contents = base.CreateObjectSet<Content>("Contents");
-                }
-                return _Contents;
-            }
-        }
-        private ObjectSet<Content> _Contents;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<Link> Links
         {
             get
@@ -139,22 +123,6 @@ namespace CMS.Models
             }
         }
         private ObjectSet<Picture> _Pictures;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Post> Posts
-        {
-            get
-            {
-                if ((_Posts == null))
-                {
-                    _Posts = base.CreateObjectSet<Post>("Posts");
-                }
-                return _Posts;
-            }
-        }
-        private ObjectSet<Post> _Posts;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -203,6 +171,38 @@ namespace CMS.Models
             }
         }
         private ObjectSet<Video> _Videos;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<CategoryRelation> CategoryRelations
+        {
+            get
+            {
+                if ((_CategoryRelations == null))
+                {
+                    _CategoryRelations = base.CreateObjectSet<CategoryRelation>("CategoryRelations");
+                }
+                return _CategoryRelations;
+            }
+        }
+        private ObjectSet<CategoryRelation> _CategoryRelations;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<sysdiagram> sysdiagrams
+        {
+            get
+            {
+                if ((_sysdiagrams == null))
+                {
+                    _sysdiagrams = base.CreateObjectSet<sysdiagram>("sysdiagrams");
+                }
+                return _sysdiagrams;
+            }
+        }
+        private ObjectSet<sysdiagram> _sysdiagrams;
 
         #endregion
         #region AddTo Methods
@@ -213,14 +213,6 @@ namespace CMS.Models
         public void AddToCategories(Category category)
         {
             base.AddObject("Categories", category);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Contents EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToContents(Content content)
-        {
-            base.AddObject("Contents", content);
         }
     
         /// <summary>
@@ -237,14 +229,6 @@ namespace CMS.Models
         public void AddToPictures(Picture picture)
         {
             base.AddObject("Pictures", picture);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Posts EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToPosts(Post post)
-        {
-            base.AddObject("Posts", post);
         }
     
         /// <summary>
@@ -269,6 +253,22 @@ namespace CMS.Models
         public void AddToVideos(Video video)
         {
             base.AddObject("Videos", video);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the CategoryRelations EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToCategoryRelations(CategoryRelation categoryRelation)
+        {
+            base.AddObject("CategoryRelations", categoryRelation);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the sysdiagrams EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTosysdiagrams(sysdiagram sysdiagram)
+        {
+            base.AddObject("sysdiagrams", sysdiagram);
         }
 
         #endregion
@@ -429,30 +429,6 @@ namespace CMS.Models
         private global::System.Int64 _TempID;
         partial void OnTempIDChanging(global::System.Int64 value);
         partial void OnTempIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int64> CatParentID
-        {
-            get
-            {
-                return _CatParentID;
-            }
-            set
-            {
-                OnCatParentIDChanging(value);
-                ReportPropertyChanging("CatParentID");
-                _CatParentID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("CatParentID");
-                OnCatParentIDChanged();
-            }
-        }
-        private Nullable<global::System.Int64> _CatParentID;
-        partial void OnCatParentIDChanging(Nullable<global::System.Int64> value);
-        partial void OnCatParentIDChanged();
 
         #endregion
     
@@ -502,18 +478,128 @@ namespace CMS.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_Posts_Categories", "Posts")]
-        public EntityCollection<Post> Posts
+        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_CategoryRelations_Categories", "CategoryRelation")]
+        public EntityCollection<CategoryRelation> CategoryRelations
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Post>("cms_2Model.FK_Posts_Categories", "Posts");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CategoryRelation>("cms_2Model.FK_CategoryRelations_Categories", "CategoryRelation");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Post>("cms_2Model.FK_Posts_Categories", "Posts", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CategoryRelation>("cms_2Model.FK_CategoryRelations_Categories", "CategoryRelation", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_CategoryRelations_Categories1", "CategoryRelation")]
+        public EntityCollection<CategoryRelation> CategoryRelations1
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CategoryRelation>("cms_2Model.FK_CategoryRelations_Categories1", "CategoryRelation");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CategoryRelation>("cms_2Model.FK_CategoryRelations_Categories1", "CategoryRelation", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_Links_Categories", "Link")]
+        public EntityCollection<Link> Links
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Link>("cms_2Model.FK_Links_Categories", "Link");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Link>("cms_2Model.FK_Links_Categories", "Link", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_Pictures_Categories", "Picture")]
+        public EntityCollection<Picture> Pictures
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Picture>("cms_2Model.FK_Pictures_Categories", "Picture");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Picture>("cms_2Model.FK_Pictures_Categories", "Picture", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_Texts_Categories", "Text")]
+        public EntityCollection<Text> Texts
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Text>("cms_2Model.FK_Texts_Categories", "Text");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Text>("cms_2Model.FK_Texts_Categories", "Text", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_Videos_Categories", "Video")]
+        public EntityCollection<Video> Videos
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Video>("cms_2Model.FK_Videos_Categories", "Video");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Video>("cms_2Model.FK_Videos_Categories", "Video", value);
                 }
             }
         }
@@ -524,22 +610,26 @@ namespace CMS.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="cms_2Model", Name="Content")]
+    [EdmEntityTypeAttribute(NamespaceName="cms_2Model", Name="CategoryRelation")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class Content : EntityObject
+    public partial class CategoryRelation : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new Content object.
+        /// Create a new CategoryRelation object.
         /// </summary>
-        /// <param name="contentID">Initial value of the ContentID property.</param>
-        public static Content CreateContent(global::System.Int64 contentID)
+        /// <param name="categoryRelationId">Initial value of the CategoryRelationId property.</param>
+        /// <param name="parentCatID">Initial value of the ParentCatID property.</param>
+        /// <param name="childCatID">Initial value of the ChildCatID property.</param>
+        public static CategoryRelation CreateCategoryRelation(global::System.Int64 categoryRelationId, global::System.Int64 parentCatID, global::System.Int64 childCatID)
         {
-            Content content = new Content();
-            content.ContentID = contentID;
-            return content;
+            CategoryRelation categoryRelation = new CategoryRelation();
+            categoryRelation.CategoryRelationId = categoryRelationId;
+            categoryRelation.ParentCatID = parentCatID;
+            categoryRelation.ChildCatID = childCatID;
+            return categoryRelation;
         }
 
         #endregion
@@ -550,123 +640,75 @@ namespace CMS.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 ContentID
+        public global::System.Int64 CategoryRelationId
         {
             get
             {
-                return _ContentID;
+                return _CategoryRelationId;
             }
             set
             {
-                if (_ContentID != value)
+                if (_CategoryRelationId != value)
                 {
-                    OnContentIDChanging(value);
-                    ReportPropertyChanging("ContentID");
-                    _ContentID = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("ContentID");
-                    OnContentIDChanged();
+                    OnCategoryRelationIdChanging(value);
+                    ReportPropertyChanging("CategoryRelationId");
+                    _CategoryRelationId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("CategoryRelationId");
+                    OnCategoryRelationIdChanged();
                 }
             }
         }
-        private global::System.Int64 _ContentID;
-        partial void OnContentIDChanging(global::System.Int64 value);
-        partial void OnContentIDChanged();
+        private global::System.Int64 _CategoryRelationId;
+        partial void OnCategoryRelationIdChanging(global::System.Int64 value);
+        partial void OnCategoryRelationIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int64> TextID
+        public global::System.Int64 ParentCatID
         {
             get
             {
-                return _TextID;
+                return _ParentCatID;
             }
             set
             {
-                OnTextIDChanging(value);
-                ReportPropertyChanging("TextID");
-                _TextID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("TextID");
-                OnTextIDChanged();
+                OnParentCatIDChanging(value);
+                ReportPropertyChanging("ParentCatID");
+                _ParentCatID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ParentCatID");
+                OnParentCatIDChanged();
             }
         }
-        private Nullable<global::System.Int64> _TextID;
-        partial void OnTextIDChanging(Nullable<global::System.Int64> value);
-        partial void OnTextIDChanged();
+        private global::System.Int64 _ParentCatID;
+        partial void OnParentCatIDChanging(global::System.Int64 value);
+        partial void OnParentCatIDChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int64> PicID
+        public global::System.Int64 ChildCatID
         {
             get
             {
-                return _PicID;
+                return _ChildCatID;
             }
             set
             {
-                OnPicIDChanging(value);
-                ReportPropertyChanging("PicID");
-                _PicID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("PicID");
-                OnPicIDChanged();
+                OnChildCatIDChanging(value);
+                ReportPropertyChanging("ChildCatID");
+                _ChildCatID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ChildCatID");
+                OnChildCatIDChanged();
             }
         }
-        private Nullable<global::System.Int64> _PicID;
-        partial void OnPicIDChanging(Nullable<global::System.Int64> value);
-        partial void OnPicIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int64> LinkID
-        {
-            get
-            {
-                return _LinkID;
-            }
-            set
-            {
-                OnLinkIDChanging(value);
-                ReportPropertyChanging("LinkID");
-                _LinkID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("LinkID");
-                OnLinkIDChanged();
-            }
-        }
-        private Nullable<global::System.Int64> _LinkID;
-        partial void OnLinkIDChanging(Nullable<global::System.Int64> value);
-        partial void OnLinkIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int64> VidID
-        {
-            get
-            {
-                return _VidID;
-            }
-            set
-            {
-                OnVidIDChanging(value);
-                ReportPropertyChanging("VidID");
-                _VidID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("VidID");
-                OnVidIDChanged();
-            }
-        }
-        private Nullable<global::System.Int64> _VidID;
-        partial void OnVidIDChanging(Nullable<global::System.Int64> value);
-        partial void OnVidIDChanged();
+        private global::System.Int64 _ChildCatID;
+        partial void OnChildCatIDChanging(global::System.Int64 value);
+        partial void OnChildCatIDChanged();
 
         #endregion
     
@@ -678,16 +720,16 @@ namespace CMS.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_Contents_Links", "Links")]
-        public Link Link
+        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_CategoryRelations_Categories", "Category")]
+        public Category Category
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Link>("cms_2Model.FK_Contents_Links", "Links").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_CategoryRelations_Categories", "Category").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Link>("cms_2Model.FK_Contents_Links", "Links").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_CategoryRelations_Categories", "Category").Value = value;
             }
         }
         /// <summary>
@@ -695,17 +737,17 @@ namespace CMS.Models
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Link> LinkReference
+        public EntityReference<Category> CategoryReference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Link>("cms_2Model.FK_Contents_Links", "Links");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_CategoryRelations_Categories", "Category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Link>("cms_2Model.FK_Contents_Links", "Links", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("cms_2Model.FK_CategoryRelations_Categories", "Category", value);
                 }
             }
         }
@@ -716,16 +758,16 @@ namespace CMS.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_Contents_Pictures", "Pictures")]
-        public Picture Picture
+        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_CategoryRelations_Categories1", "Category")]
+        public Category Category1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Picture>("cms_2Model.FK_Contents_Pictures", "Pictures").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_CategoryRelations_Categories1", "Category").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Picture>("cms_2Model.FK_Contents_Pictures", "Pictures").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_CategoryRelations_Categories1", "Category").Value = value;
             }
         }
         /// <summary>
@@ -733,115 +775,17 @@ namespace CMS.Models
         /// </summary>
         [BrowsableAttribute(false)]
         [DataMemberAttribute()]
-        public EntityReference<Picture> PictureReference
+        public EntityReference<Category> Category1Reference
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Picture>("cms_2Model.FK_Contents_Pictures", "Pictures");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_CategoryRelations_Categories1", "Category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Picture>("cms_2Model.FK_Contents_Pictures", "Pictures", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_Contents_Texts", "Texts")]
-        public Text Text
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Text>("cms_2Model.FK_Contents_Texts", "Texts").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Text>("cms_2Model.FK_Contents_Texts", "Texts").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Text> TextReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Text>("cms_2Model.FK_Contents_Texts", "Texts");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Text>("cms_2Model.FK_Contents_Texts", "Texts", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_Contents_Videos", "Videos")]
-        public Video Video
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Video>("cms_2Model.FK_Contents_Videos", "Videos").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Video>("cms_2Model.FK_Contents_Videos", "Videos").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Video> VideoReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Video>("cms_2Model.FK_Contents_Videos", "Videos");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Video>("cms_2Model.FK_Contents_Videos", "Videos", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_Posts_Contents", "Posts")]
-        public EntityCollection<Post> Posts
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Post>("cms_2Model.FK_Posts_Contents", "Posts");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Post>("cms_2Model.FK_Posts_Contents", "Posts", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("cms_2Model.FK_CategoryRelations_Categories1", "Category", value);
                 }
             }
         }
@@ -973,6 +917,78 @@ namespace CMS.Models
         private global::System.String _LinkText;
         partial void OnLinkTextChanging(global::System.String value);
         partial void OnLinkTextChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int64> LinkPrio
+        {
+            get
+            {
+                return _LinkPrio;
+            }
+            set
+            {
+                OnLinkPrioChanging(value);
+                ReportPropertyChanging("LinkPrio");
+                _LinkPrio = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LinkPrio");
+                OnLinkPrioChanged();
+            }
+        }
+        private Nullable<global::System.Int64> _LinkPrio;
+        partial void OnLinkPrioChanging(Nullable<global::System.Int64> value);
+        partial void OnLinkPrioChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int64> CatID
+        {
+            get
+            {
+                return _CatID;
+            }
+            set
+            {
+                OnCatIDChanging(value);
+                ReportPropertyChanging("CatID");
+                _CatID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CatID");
+                OnCatIDChanged();
+            }
+        }
+        private Nullable<global::System.Int64> _CatID;
+        partial void OnCatIDChanging(Nullable<global::System.Int64> value);
+        partial void OnCatIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.Byte[] LinkDateCreated
+        {
+            get
+            {
+                return StructuralObject.GetValidValue(_LinkDateCreated);
+            }
+            set
+            {
+                OnLinkDateCreatedChanging(value);
+                ReportPropertyChanging("LinkDateCreated");
+                _LinkDateCreated = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("LinkDateCreated");
+                OnLinkDateCreatedChanged();
+            }
+        }
+        private global::System.Byte[] _LinkDateCreated;
+        partial void OnLinkDateCreatedChanging(global::System.Byte[] value);
+        partial void OnLinkDateCreatedChanged();
 
         #endregion
     
@@ -984,18 +1000,34 @@ namespace CMS.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_Contents_Links", "Contents")]
-        public EntityCollection<Content> Contents
+        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_Links_Categories", "Category")]
+        public Category Category
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Content>("cms_2Model.FK_Contents_Links", "Contents");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_Links_Categories", "Category").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_Links_Categories", "Category").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Category> CategoryReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_Links_Categories", "Category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Content>("cms_2Model.FK_Contents_Links", "Contents", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("cms_2Model.FK_Links_Categories", "Category", value);
                 }
             }
         }
@@ -1153,99 +1185,37 @@ namespace CMS.Models
         private global::System.String _PicDesc;
         partial void OnPicDescChanging(global::System.String value);
         partial void OnPicDescChanged();
-
-        #endregion
-    
-        #region Navigation Properties
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_Contents_Pictures", "Contents")]
-        public EntityCollection<Content> Contents
+        public Nullable<global::System.Int64> PicPrio
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Content>("cms_2Model.FK_Contents_Pictures", "Contents");
+                return _PicPrio;
             }
             set
             {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Content>("cms_2Model.FK_Contents_Pictures", "Contents", value);
-                }
+                OnPicPrioChanging(value);
+                ReportPropertyChanging("PicPrio");
+                _PicPrio = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("PicPrio");
+                OnPicPrioChanged();
             }
         }
-
-        #endregion
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="cms_2Model", Name="Post")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class Post : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new Post object.
-        /// </summary>
-        /// <param name="postID">Initial value of the PostID property.</param>
-        /// <param name="catID">Initial value of the CatID property.</param>
-        /// <param name="postPrio">Initial value of the PostPrio property.</param>
-        /// <param name="contentID">Initial value of the ContentID property.</param>
-        public static Post CreatePost(global::System.Int64 postID, global::System.Int64 catID, global::System.Int64 postPrio, global::System.Int64 contentID)
-        {
-            Post post = new Post();
-            post.PostID = postID;
-            post.CatID = catID;
-            post.PostPrio = postPrio;
-            post.ContentID = contentID;
-            return post;
-        }
-
-        #endregion
-        #region Primitive Properties
+        private Nullable<global::System.Int64> _PicPrio;
+        partial void OnPicPrioChanging(Nullable<global::System.Int64> value);
+        partial void OnPicPrioChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Int64 PostID
-        {
-            get
-            {
-                return _PostID;
-            }
-            set
-            {
-                if (_PostID != value)
-                {
-                    OnPostIDChanging(value);
-                    ReportPropertyChanging("PostID");
-                    _PostID = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("PostID");
-                    OnPostIDChanged();
-                }
-            }
-        }
-        private global::System.Int64 _PostID;
-        partial void OnPostIDChanging(global::System.Int64 value);
-        partial void OnPostIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int64 CatID
+        public Nullable<global::System.Int64> CatID
         {
             get
             {
@@ -1260,57 +1230,33 @@ namespace CMS.Models
                 OnCatIDChanged();
             }
         }
-        private global::System.Int64 _CatID;
-        partial void OnCatIDChanging(global::System.Int64 value);
+        private Nullable<global::System.Int64> _CatID;
+        partial void OnCatIDChanging(Nullable<global::System.Int64> value);
         partial void OnCatIDChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Int64 PostPrio
+        public global::System.Byte[] PicDateCreated
         {
             get
             {
-                return _PostPrio;
+                return StructuralObject.GetValidValue(_PicDateCreated);
             }
             set
             {
-                OnPostPrioChanging(value);
-                ReportPropertyChanging("PostPrio");
-                _PostPrio = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("PostPrio");
-                OnPostPrioChanged();
+                OnPicDateCreatedChanging(value);
+                ReportPropertyChanging("PicDateCreated");
+                _PicDateCreated = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("PicDateCreated");
+                OnPicDateCreatedChanged();
             }
         }
-        private global::System.Int64 _PostPrio;
-        partial void OnPostPrioChanging(global::System.Int64 value);
-        partial void OnPostPrioChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int64 ContentID
-        {
-            get
-            {
-                return _ContentID;
-            }
-            set
-            {
-                OnContentIDChanging(value);
-                ReportPropertyChanging("ContentID");
-                _ContentID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ContentID");
-                OnContentIDChanged();
-            }
-        }
-        private global::System.Int64 _ContentID;
-        partial void OnContentIDChanging(global::System.Int64 value);
-        partial void OnContentIDChanged();
+        private global::System.Byte[] _PicDateCreated;
+        partial void OnPicDateCreatedChanging(global::System.Byte[] value);
+        partial void OnPicDateCreatedChanged();
 
         #endregion
     
@@ -1322,16 +1268,16 @@ namespace CMS.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_Posts_Categories", "Categories")]
+        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_Pictures_Categories", "Category")]
         public Category Category
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_Posts_Categories", "Categories").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_Pictures_Categories", "Category").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_Posts_Categories", "Categories").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_Pictures_Categories", "Category").Value = value;
             }
         }
         /// <summary>
@@ -1343,56 +1289,173 @@ namespace CMS.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_Posts_Categories", "Categories");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_Pictures_Categories", "Category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("cms_2Model.FK_Posts_Categories", "Categories", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_Posts_Contents", "Contents")]
-        public Content Content
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Content>("cms_2Model.FK_Posts_Contents", "Contents").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Content>("cms_2Model.FK_Posts_Contents", "Contents").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Content> ContentReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Content>("cms_2Model.FK_Posts_Contents", "Contents");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Content>("cms_2Model.FK_Posts_Contents", "Contents", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("cms_2Model.FK_Pictures_Categories", "Category", value);
                 }
             }
         }
 
         #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="cms_2Model", Name="sysdiagram")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class sysdiagram : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new sysdiagram object.
+        /// </summary>
+        /// <param name="name">Initial value of the name property.</param>
+        /// <param name="principal_id">Initial value of the principal_id property.</param>
+        /// <param name="diagram_id">Initial value of the diagram_id property.</param>
+        public static sysdiagram Createsysdiagram(global::System.String name, global::System.Int32 principal_id, global::System.Int32 diagram_id)
+        {
+            sysdiagram sysdiagram = new sysdiagram();
+            sysdiagram.name = name;
+            sysdiagram.principal_id = principal_id;
+            sysdiagram.diagram_id = diagram_id;
+            return sysdiagram;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                OnnameChanging(value);
+                ReportPropertyChanging("name");
+                _name = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("name");
+                OnnameChanged();
+            }
+        }
+        private global::System.String _name;
+        partial void OnnameChanging(global::System.String value);
+        partial void OnnameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 principal_id
+        {
+            get
+            {
+                return _principal_id;
+            }
+            set
+            {
+                Onprincipal_idChanging(value);
+                ReportPropertyChanging("principal_id");
+                _principal_id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("principal_id");
+                Onprincipal_idChanged();
+            }
+        }
+        private global::System.Int32 _principal_id;
+        partial void Onprincipal_idChanging(global::System.Int32 value);
+        partial void Onprincipal_idChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 diagram_id
+        {
+            get
+            {
+                return _diagram_id;
+            }
+            set
+            {
+                if (_diagram_id != value)
+                {
+                    Ondiagram_idChanging(value);
+                    ReportPropertyChanging("diagram_id");
+                    _diagram_id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("diagram_id");
+                    Ondiagram_idChanged();
+                }
+            }
+        }
+        private global::System.Int32 _diagram_id;
+        partial void Ondiagram_idChanging(global::System.Int32 value);
+        partial void Ondiagram_idChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> version
+        {
+            get
+            {
+                return _version;
+            }
+            set
+            {
+                OnversionChanging(value);
+                ReportPropertyChanging("version");
+                _version = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("version");
+                OnversionChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _version;
+        partial void OnversionChanging(Nullable<global::System.Int32> value);
+        partial void OnversionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.Byte[] definition
+        {
+            get
+            {
+                return StructuralObject.GetValidValue(_definition);
+            }
+            set
+            {
+                OndefinitionChanging(value);
+                ReportPropertyChanging("definition");
+                _definition = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("definition");
+                OndefinitionChanged();
+            }
+        }
+        private global::System.Byte[] _definition;
+        partial void OndefinitionChanging(global::System.Byte[] value);
+        partial void OndefinitionChanged();
+
+        #endregion
+    
     }
     
     /// <summary>
@@ -1653,6 +1716,78 @@ namespace CMS.Models
         private global::System.String _TextData;
         partial void OnTextDataChanging(global::System.String value);
         partial void OnTextDataChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int64> TextPrio
+        {
+            get
+            {
+                return _TextPrio;
+            }
+            set
+            {
+                OnTextPrioChanging(value);
+                ReportPropertyChanging("TextPrio");
+                _TextPrio = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("TextPrio");
+                OnTextPrioChanged();
+            }
+        }
+        private Nullable<global::System.Int64> _TextPrio;
+        partial void OnTextPrioChanging(Nullable<global::System.Int64> value);
+        partial void OnTextPrioChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int64> CatID
+        {
+            get
+            {
+                return _CatID;
+            }
+            set
+            {
+                OnCatIDChanging(value);
+                ReportPropertyChanging("CatID");
+                _CatID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CatID");
+                OnCatIDChanged();
+            }
+        }
+        private Nullable<global::System.Int64> _CatID;
+        partial void OnCatIDChanging(Nullable<global::System.Int64> value);
+        partial void OnCatIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.Byte[] TextDateCreated
+        {
+            get
+            {
+                return StructuralObject.GetValidValue(_TextDateCreated);
+            }
+            set
+            {
+                OnTextDateCreatedChanging(value);
+                ReportPropertyChanging("TextDateCreated");
+                _TextDateCreated = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("TextDateCreated");
+                OnTextDateCreatedChanged();
+            }
+        }
+        private global::System.Byte[] _TextDateCreated;
+        partial void OnTextDateCreatedChanging(global::System.Byte[] value);
+        partial void OnTextDateCreatedChanged();
 
         #endregion
     
@@ -1664,18 +1799,34 @@ namespace CMS.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_Contents_Texts", "Contents")]
-        public EntityCollection<Content> Contents
+        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_Texts_Categories", "Category")]
+        public Category Category
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Content>("cms_2Model.FK_Contents_Texts", "Contents");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_Texts_Categories", "Category").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_Texts_Categories", "Category").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Category> CategoryReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_Texts_Categories", "Category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Content>("cms_2Model.FK_Contents_Texts", "Contents", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("cms_2Model.FK_Texts_Categories", "Category", value);
                 }
             }
         }
@@ -1807,6 +1958,78 @@ namespace CMS.Models
         private global::System.String _VidDesc;
         partial void OnVidDescChanging(global::System.String value);
         partial void OnVidDescChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int64> VidPrio
+        {
+            get
+            {
+                return _VidPrio;
+            }
+            set
+            {
+                OnVidPrioChanging(value);
+                ReportPropertyChanging("VidPrio");
+                _VidPrio = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("VidPrio");
+                OnVidPrioChanged();
+            }
+        }
+        private Nullable<global::System.Int64> _VidPrio;
+        partial void OnVidPrioChanging(Nullable<global::System.Int64> value);
+        partial void OnVidPrioChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int64> CatID
+        {
+            get
+            {
+                return _CatID;
+            }
+            set
+            {
+                OnCatIDChanging(value);
+                ReportPropertyChanging("CatID");
+                _CatID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CatID");
+                OnCatIDChanged();
+            }
+        }
+        private Nullable<global::System.Int64> _CatID;
+        partial void OnCatIDChanging(Nullable<global::System.Int64> value);
+        partial void OnCatIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.Byte[] VidDateCreated
+        {
+            get
+            {
+                return StructuralObject.GetValidValue(_VidDateCreated);
+            }
+            set
+            {
+                OnVidDateCreatedChanging(value);
+                ReportPropertyChanging("VidDateCreated");
+                _VidDateCreated = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("VidDateCreated");
+                OnVidDateCreatedChanged();
+            }
+        }
+        private global::System.Byte[] _VidDateCreated;
+        partial void OnVidDateCreatedChanging(global::System.Byte[] value);
+        partial void OnVidDateCreatedChanged();
 
         #endregion
     
@@ -1818,18 +2041,34 @@ namespace CMS.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_Contents_Videos", "Contents")]
-        public EntityCollection<Content> Contents
+        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_Videos_Categories", "Category")]
+        public Category Category
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Content>("cms_2Model.FK_Contents_Videos", "Contents");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_Videos_Categories", "Category").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_Videos_Categories", "Category").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Category> CategoryReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_Videos_Categories", "Category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Content>("cms_2Model.FK_Contents_Videos", "Contents", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("cms_2Model.FK_Videos_Categories", "Category", value);
                 }
             }
         }

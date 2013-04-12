@@ -14,7 +14,7 @@ namespace CMS.Controllers
         private cms_2Entities db = new cms_2Entities();
 
         //
-        // GET: /Default1/
+        // GET: /Category/
 
         public ActionResult Index()
         {
@@ -23,7 +23,7 @@ namespace CMS.Controllers
         }
 
         //
-        // GET: /Default1/Details/5
+        // GET: /Category/Details/5
 
         public ActionResult Details(long id = 0)
         {
@@ -36,7 +36,7 @@ namespace CMS.Controllers
         }
 
         //
-        // GET: /Default1/Create
+        // GET: /Category/Create
 
         public ActionResult Create()
         {
@@ -45,7 +45,7 @@ namespace CMS.Controllers
         }
 
         //
-        // POST: /Default1/Create
+        // POST: /Category/Create
 
         [HttpPost]
         public ActionResult Create(Category category)
@@ -62,7 +62,7 @@ namespace CMS.Controllers
         }
 
         //
-        // GET: /Default1/Edit/5
+        // GET: /Category/Edit/5
 
         public ActionResult Edit(long id = 0)
         {
@@ -76,7 +76,7 @@ namespace CMS.Controllers
         }
 
         //
-        // POST: /Default1/Edit/5
+        // POST: /Category/Edit/5
 
         [HttpPost]
         public ActionResult Edit(Category category)
@@ -93,7 +93,7 @@ namespace CMS.Controllers
         }
 
         //
-        // GET: /Default1/Delete/5
+        // GET: /Category/Delete/5
 
         public ActionResult Delete(long id = 0)
         {
@@ -106,7 +106,7 @@ namespace CMS.Controllers
         }
 
         //
-        // POST: /Default1/Delete/5
+        // POST: /Category/Delete/5
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(long id)

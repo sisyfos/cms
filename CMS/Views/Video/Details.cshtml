@@ -1,0 +1,50 @@
+﻿@model CMS.Models.Video
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Video</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.VidTitle)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.VidTitle)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.VidUrl)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.VidUrl)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.VidDesc)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.VidDesc)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.VidPrio)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.VidPrio)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Category.CatName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Category.CatName)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.VidID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

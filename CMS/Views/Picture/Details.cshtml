@@ -1,0 +1,57 @@
+﻿@model CMS.Models.Picture
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Picture</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PicTitle)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PicTitle)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PicUrl)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PicUrl)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PicAltText)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PicAltText)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PicDesc)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PicDesc)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PicPrio)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PicPrio)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Category.CatName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Category.CatName)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.PicID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

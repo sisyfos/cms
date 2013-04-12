@@ -1,0 +1,57 @@
+﻿@model IEnumerable<CMS.Models.Video>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.VidTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VidUrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VidDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VidPrio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.CatName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.VidTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VidUrl)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VidDesc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VidPrio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.CatName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.VidID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.VidID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.VidID })
+        </td>
+    </tr>
+}
+
+</table>

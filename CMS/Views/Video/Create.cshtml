@@ -1,0 +1,67 @@
+﻿@model CMS.Models.Video
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Video</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.VidTitle)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.VidTitle)
+            @Html.ValidationMessageFor(model => model.VidTitle)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.VidUrl)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.VidUrl)
+            @Html.ValidationMessageFor(model => model.VidUrl)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.VidDesc)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.VidDesc)
+            @Html.ValidationMessageFor(model => model.VidDesc)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.VidPrio)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.VidPrio)
+            @Html.ValidationMessageFor(model => model.VidPrio)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CatID, "Category")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CatID", String.Empty)
+            @Html.ValidationMessageFor(model => model.CatID)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

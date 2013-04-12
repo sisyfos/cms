@@ -1,0 +1,43 @@
+﻿@model CMS.Models.Text
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Text</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TextTitle)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TextTitle)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TextData)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TextData)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TextPrio)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TextPrio)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Category.CatName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Category.CatName)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.TextID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

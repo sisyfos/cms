@@ -1,0 +1,51 @@
+﻿@model CMS.Models.Template
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Template</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TempName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TempName)
+            @Html.ValidationMessageFor(model => model.TempName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TempDesc)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TempDesc)
+            @Html.ValidationMessageFor(model => model.TempDesc)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TempURL)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TempURL)
+            @Html.ValidationMessageFor(model => model.TempURL)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

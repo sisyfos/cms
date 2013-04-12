@@ -1,0 +1,36 @@
+﻿@model CMS.Models.Template
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Template</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TempName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TempName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TempDesc)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TempDesc)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TempURL)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TempURL)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.TempID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

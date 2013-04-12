@@ -166,7 +166,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PostController.cs" />
+    <Compile Include="Controllers\LinkController.cs" />
+    <Compile Include="Controllers\PictureController.cs" />
+    <Compile Include="Controllers\TemplateController.cs" />
+    <Compile Include="Controllers\TextController.cs" />
+    <Compile Include="Controllers\VideoController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -253,7 +257,9 @@
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -300,6 +306,72 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <EntityDeploy Include="Models\cms.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>cms.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Text\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Text\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Text\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Text\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Text\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Video\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Video\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Video\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Video\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Video\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Link\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Link\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Link\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Link\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Link\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Picture\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Picture\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Picture\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Picture\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Picture\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Views\Category\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -315,25 +387,19 @@
     <Content Include="Views\Category\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Post\Index.cshtml" />
+    <Content Include="Views\Template\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Post\Details.cshtml" />
+    <Content Include="Views\Template\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Post\Create.cshtml" />
+    <Content Include="Views\Template\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Post\Edit.cshtml" />
+    <Content Include="Views\Template\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Post\Delete.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="Models\cms.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>cms.Designer.cs</LastGenOutput>
-    </EntityDeploy>
+    <Content Include="Views\Template\Delete.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

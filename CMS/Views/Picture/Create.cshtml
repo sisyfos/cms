@@ -1,0 +1,75 @@
+﻿@model CMS.Models.Picture
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Picture</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PicTitle)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PicTitle)
+            @Html.ValidationMessageFor(model => model.PicTitle)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PicUrl)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PicUrl)
+            @Html.ValidationMessageFor(model => model.PicUrl)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PicAltText)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PicAltText)
+            @Html.ValidationMessageFor(model => model.PicAltText)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PicDesc)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PicDesc)
+            @Html.ValidationMessageFor(model => model.PicDesc)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PicPrio)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PicPrio)
+            @Html.ValidationMessageFor(model => model.PicPrio)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CatID, "Category")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CatID", String.Empty)
+            @Html.ValidationMessageFor(model => model.CatID)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

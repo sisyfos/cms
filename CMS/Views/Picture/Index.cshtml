@@ -1,0 +1,63 @@
+﻿@model IEnumerable<CMS.Models.Picture>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PicTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PicUrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PicAltText)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PicDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PicPrio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.CatName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PicTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PicUrl)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PicAltText)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PicDesc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PicPrio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.CatName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PicID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PicID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PicID })
+        </td>
+    </tr>
+}
+
+</table>
