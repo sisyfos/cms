@@ -61,7 +61,6 @@ namespace CMS.Controllers
         //
         // GET: /Account/Register
 
-        [AllowAnonymous]
         public ActionResult Register()
         {
             return View();
@@ -71,7 +70,6 @@ namespace CMS.Controllers
         // POST: /Account/Register
 
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterModel model)
         {
