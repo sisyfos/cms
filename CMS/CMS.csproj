@@ -181,7 +181,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\AdminModels.cs" />
-    <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\cms.Designer.cs">
       <DependentUpon>cms.edmx</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -410,6 +409,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_VideoPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_TextPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_LinkPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_PicturePartial.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
