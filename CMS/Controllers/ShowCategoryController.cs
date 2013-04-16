@@ -16,9 +16,9 @@ namespace CMS.Controllers
 
         public ActionResult Index()
         {
-
+             
             // lista av kategorier från db =>
-            var entities = db.Categories.Include("Text").Include("Pictures");
+            var entities = db.Categories.Include("Texts").Include("Pictures");
             // lista som ska skickas till vyn =>
             var model = new List<CategoryModel>();
 
@@ -27,7 +27,7 @@ namespace CMS.Controllers
             {
                 // fyll modellen med innehåll
                 CategoryModel catModel = new CategoryModel();
-                catModel.CatTitle = entity.CatName;                
+                catModel.CatTitle = entity.CatName;               
                 // etc...
                 model.Add(catModel);
             }

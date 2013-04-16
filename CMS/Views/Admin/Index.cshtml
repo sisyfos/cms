@@ -1,8 +1,13 @@
-﻿@model CMS.Models.AdminModels
-
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Admin Area</h2>
+
+@Html.Partial("CategoryPartial")
+
+@Html.ActionLink("Text", "Index", "Text")
+@Html.ActionLink("Picture", "Index", "Picture")
+@Html.ActionLink("Video", "Index", "Video")
+@Html.ActionLink("Link", "Index", "Link")
