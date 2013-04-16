@@ -180,7 +180,6 @@
     <Compile Include="Models\AccountModels.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\cms.Designer.cs">
       <DependentUpon>cms.edmx</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -411,7 +410,16 @@
     <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Admin\CategoryPartial.cshtml" />
+    <Content Include="Views\Shared\_VideoPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_TextPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_LinkPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_PicturePartial.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

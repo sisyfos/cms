@@ -14,25 +14,19 @@ namespace CMS.Controllers
         //
         // GET: /ShowCategory/
 
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
              
-            // lista av kategorier från db =>
+            var category = new Category();
             var entities = db.Categories.Include("Texts").Include("Pictures");
-            // lista som ska skickas till vyn =>
-            var model = new List<CategoryModel>();
 
-            // loopa igenom alla kategorier
-            foreach(var entity in entities)
+            if(id.HasValue)
             {
-                // fyll modellen med innehåll
-                CategoryModel catModel = new CategoryModel();
+                category = db.Categories.Include("Texts").Include("Videos").Include("Links").Include("Pictures").First(c => c.CatID == id.Value);
                 catModel.CatTitle = entity.CatName;               
-                // etc...
-                model.Add(catModel);
             }
             
-            return View(model);
+            return View(category);
         }
 
     }
