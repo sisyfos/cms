@@ -168,6 +168,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LinkController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\PictureController.cs" />
     <Compile Include="Controllers\ShowCategoryController.cs" />
     <Compile Include="Controllers\TemplateController.cs" />
@@ -420,6 +421,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_PicturePartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Menu\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

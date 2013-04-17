@@ -18,12 +18,10 @@ namespace CMS.Controllers
         {
              
             var category = new Category();
-            var entities = db.Categories.Include("Texts").Include("Pictures");
-
+            
             if(id.HasValue)
             {
-                category = db.Categories.Include("Texts").Include("Videos").Include("Links").Include("Pictures").First(c => c.CatID == id.Value);
-                catModel.CatTitle = entity.CatName;               
+                category = db.Categories.Include("Texts").Include("Videos").Include("Links").Include("Pictures").First(c => c.CatID == id.Value);            
             }
             
             return View(category);
