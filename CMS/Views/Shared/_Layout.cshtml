@@ -13,7 +13,7 @@
         <div class="float-login">
                     <section id="login">
                         @Html.Partial("_LoginPartial")
-                    </section>
+                    </section>                        
                 </div>
                 <div class="float-left">
                     <p class="site-title">@Html.ActionLink("Sisyfos", "Index", "Home")</p>
@@ -25,14 +25,11 @@
                 </div>
 
               <nav>
+                    @*@Html.Partial("~/Views/Menu/Index.cshtml")*@
                         <ul id="menu">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                            <li>@Html.ActionLink("Text", "Index", "Text")</li>
-                            <li>@Html.ActionLink("Picture", "Index", "Picture")</li>
-                            <li>@Html.ActionLink("Video", "Index", "Video")</li>
-                            <li>@Html.ActionLink("Link", "Index", "Link")</li>
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>               
                         </ul>
                     </nav>
         </header>

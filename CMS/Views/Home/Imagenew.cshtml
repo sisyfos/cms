@@ -1,0 +1,14 @@
+﻿@model CMS.Controllers.ImageModel
+@using (Html.BeginForm("Imagenew", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    
+    <form method="post" action="/images_upload" enctype="multipart/form-data">  
+        <input name="ImageUploaded" type="file" title="Välj fil...">  
+        <input type="submit" title="Ladda upp din fil här..">
+    </form>  
+}
+
+    @foreach (var image in Model.Images)
+    {
+        <img src="@Url.Content(image)" alt="Pictures" height="100px" width="100px" />
+    }

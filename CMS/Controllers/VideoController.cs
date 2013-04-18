@@ -52,6 +52,8 @@ namespace CMS.Controllers
         {
             if (ModelState.IsValid)
             {
+                Uri uri = new Uri(video.VidUrl);
+                video.VidUrl = HttpUtility.ParseQueryString(uri.Query).Get("v");                
                 db.Videos.AddObject(video);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -83,6 +85,10 @@ namespace CMS.Controllers
         {
             if (ModelState.IsValid)
             {
+                /*
+                Uri uri = new Uri(video.VidUrl);
+                video.VidUrl = HttpUtility.ParseQueryString(uri.Query).Get("v");  
+                */
                 db.Videos.Attach(video);
                 db.ObjectStateManager.ChangeObjectState(video, EntityState.Modified);
                 db.SaveChanges();

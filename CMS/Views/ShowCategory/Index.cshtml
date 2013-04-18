@@ -1,24 +1,31 @@
-﻿@model IEnumerable<CMS.Models.CategoryModel>
+﻿@model CMS.Models.Category
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>@Html.DisplayFor(model => model.CatName)</h2>
+<h3>@Html.DisplayFor(model => model.CatDesc)</h3>
 
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CatTitle)
-        </th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CatTitle)
-        </td>
-    </tr>
+@foreach (var video in Model.Videos)
+{
+    @Html.Partial("_VideoPartial", video)
 }
 
-</table>
+@foreach (var text in Model.Texts)
+{
+    
+    @Html.Partial("_TextPartial", text)
+}
+
+@foreach (var link in Model.Links)
+{
+    
+    @Html.Partial("_LinkPartial", link)
+}
+
+@foreach (var picture in Model.Pictures)
+{
+    
+    @Html.Partial("_PicturePartial", picture)
+}
