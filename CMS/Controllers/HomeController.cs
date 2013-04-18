@@ -29,6 +29,23 @@ namespace CMS.Controllers
 
         }
 
+        [ChildActionOnly]
+        public ActionResult ShowStartPage()
+        {
+            var startpage = db.SiteConfigs.First();
+            var startid = startpage.SiteStartCatID;
+
+            var category = new Category();
+
+            if (startid.HasValue)
+            {
+                category = db.Categories.Include("Texts").Include("Videos").Include("Links").Include("Pictures").First(c => c.CatID == startid.Value);
+            }            
+
+            return PartialView(category);
+
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your app description page.";

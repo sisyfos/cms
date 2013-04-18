@@ -511,6 +511,9 @@
   <ItemGroup>
     <Content Include="Views\Admin\CategoryPartial.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\ShowStartPage.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
