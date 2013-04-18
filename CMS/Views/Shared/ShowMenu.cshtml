@@ -1,0 +1,13 @@
+﻿@model IEnumerable<CMS.Models.Category>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<ul id="menu">
+
+@foreach (var item in Model)
+{
+    <li><a href="/ShowCategory/index/@Html.DisplayFor(modelItem => item.CatID)">@Html.DisplayFor(modelItem => item.CatName)</a></li>
+}
+</ul>

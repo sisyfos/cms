@@ -19,5 +19,13 @@ namespace CMS.Controllers
             return View(categories.ToList());            
         }
 
+        [ChildActionOnly]
+        public ActionResult ShowMenu()
+        {
+            var categories = db.Categories.Include("Template");
+            //return View(categories.ToList());            
+            return PartialView(categories.ToList());
+        }
+
     }
 }

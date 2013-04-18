@@ -10,6 +10,7 @@
           <EntitySet Name="CategoryRelations" EntityType="cms_2Model.Store.CategoryRelations" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Links" EntityType="cms_2Model.Store.Links" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Pictures" EntityType="cms_2Model.Store.Pictures" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SiteConfigs" EntityType="cms_2Model.Store.SiteConfigs" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Templates" EntityType="cms_2Model.Store.Templates" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Texts" EntityType="cms_2Model.Store.Texts" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Videos" EntityType="cms_2Model.Store.Videos" store:Type="Tables" Schema="dbo" />
@@ -32,6 +33,10 @@
           <AssociationSet Name="FK_Pictures_Categories" Association="cms_2Model.Store.FK_Pictures_Categories">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Pictures" EntitySet="Pictures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SiteConfigs_Categories" Association="cms_2Model.Store.FK_SiteConfigs_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="SiteConfigs" EntitySet="SiteConfigs" />
           </AssociationSet>
           <AssociationSet Name="FK_Texts_Categories" Association="cms_2Model.Store.FK_Texts_Categories">
             <End Role="Categories" EntitySet="Categories" />
@@ -84,6 +89,15 @@
           <Property Name="PicPrio" Type="bigint" />
           <Property Name="CatID" Type="bigint" />
           <Property Name="PicDateCreated" Type="timestamp" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="SiteConfigs">
+          <Key>
+            <PropertyRef Name="SiteConfigID" />
+          </Key>
+          <Property Name="SiteConfigID" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SiteName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SiteDesc" Type="nvarchar(max)" />
+          <Property Name="SiteStartCatID" Type="bigint" />
         </EntityType>
         <EntityType Name="Templates">
           <Key>
@@ -177,6 +191,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SiteConfigs_Categories">
+          <End Role="Categories" Type="cms_2Model.Store.Categories" Multiplicity="0..1" />
+          <End Role="SiteConfigs" Type="cms_2Model.Store.SiteConfigs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CatID" />
+            </Principal>
+            <Dependent Role="SiteConfigs">
+              <PropertyRef Name="SiteStartCatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Texts_Categories">
           <End Role="Categories" Type="cms_2Model.Store.Categories" Multiplicity="0..1" />
           <End Role="Texts" Type="cms_2Model.Store.Texts" Multiplicity="*" />
@@ -241,6 +267,11 @@
             <End Role="Category" EntitySet="Categories" />
             <End Role="Video" EntitySet="Videos" />
           </AssociationSet>
+          <EntitySet Name="SiteConfigs" EntityType="cms_2Model.SiteConfig" />
+          <AssociationSet Name="FK_SiteConfigs_Categories" Association="cms_2Model.FK_SiteConfigs_Categories">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="SiteConfig" EntitySet="SiteConfigs" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Category">
           <Key>
@@ -258,6 +289,7 @@
           <NavigationProperty Name="Pictures" Relationship="cms_2Model.FK_Pictures_Categories" FromRole="Category" ToRole="Picture" />
           <NavigationProperty Name="Texts" Relationship="cms_2Model.FK_Texts_Categories" FromRole="Category" ToRole="Text" />
           <NavigationProperty Name="Videos" Relationship="cms_2Model.FK_Videos_Categories" FromRole="Category" ToRole="Video" />
+          <NavigationProperty Name="SiteConfigs" Relationship="cms_2Model.FK_SiteConfigs_Categories" FromRole="Category" ToRole="SiteConfig" />
         </EntityType>
         <EntityType Name="Link">
           <Key>
@@ -415,6 +447,28 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="SiteConfig">
+          <Key>
+            <PropertyRef Name="SiteConfigID" />
+          </Key>
+          <Property Type="Int64" Name="SiteConfigID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="SiteName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SiteDesc" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="SiteStartCatID" />
+          <NavigationProperty Name="Category" Relationship="cms_2Model.FK_SiteConfigs_Categories" FromRole="SiteConfig" ToRole="Category" />
+        </EntityType>
+        <Association Name="FK_SiteConfigs_Categories">
+          <End Type="cms_2Model.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="cms_2Model.SiteConfig" Role="SiteConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CatID" />
+            </Principal>
+            <Dependent Role="SiteConfig">
+              <PropertyRef Name="SiteStartCatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -479,6 +533,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SiteConfigs">
+            <EntityTypeMapping TypeName="cms_2Model.SiteConfig">
+              <MappingFragment StoreEntitySet="SiteConfigs">
+                <ScalarProperty Name="SiteStartCatID" ColumnName="SiteStartCatID" />
+                <ScalarProperty Name="SiteDesc" ColumnName="SiteDesc" />
+                <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+                <ScalarProperty Name="SiteConfigID" ColumnName="SiteConfigID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -512,23 +576,27 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="cms_2Model.CategoryRelation" Width="1.5" PointX="5.25" PointY="14.875" Height="1.9802864583333317" />
         <AssociationConnector Association="cms_2Model.FK_CategoryRelations_Categories" >
-          <ConnectorPoint PointX="3.75" PointY="10.826396484375003" />
-          <ConnectorPoint PointX="3.75" PointY="15.865143229166666" />
-          <ConnectorPoint PointX="5.25" PointY="15.865143229166666" />
+          <ConnectorPoint PointX="3.75" PointY="11.018697916666667" />
+          <ConnectorPoint PointX="3.75" PointY="16.128305286458332" />
+          <ConnectorPoint PointX="4.2760454166666664" PointY="16.128305286458332" />
+          <ConnectorPoint PointX="4.4427120833333325" PointY="16.128305286458332" />
+          <ConnectorPoint PointX="5.25" PointY="16.128305286458332" />
         </AssociationConnector>
         <AssociationConnector Association="cms_2Model.FK_CategoryRelations_Categories1" >
-          <ConnectorPoint PointX="4.1562525" PointY="10.826396484375003" />
-          <ConnectorPoint PointX="4.1562525" PointY="15.338819114583332" />
-          <ConnectorPoint PointX="5.25" PointY="15.338819114583332" />
+          <ConnectorPoint PointX="4.1562525" PointY="11.018697916666667" />
+          <ConnectorPoint PointX="4.1562525" PointY="15.470400143229165" />
+          <ConnectorPoint PointX="4.2760454166666664" PointY="15.470400143229165" />
+          <ConnectorPoint PointX="4.4427120833333325" PointY="15.470400143229165" />
+          <ConnectorPoint PointX="5.25" PointY="15.470400143229165" />
         </AssociationConnector>
         <AssociationConnector Association="cms_2Model.FK_Links_Categories" >
-          <ConnectorPoint PointX="3.75" PointY="7.5" />
-          <ConnectorPoint PointX="3.75" PointY="2.9035953776041663" />
+          <ConnectorPoint PointX="3.54687375" PointY="7.5" />
+          <ConnectorPoint PointX="3.54687375" PointY="2.9035953776041663" />
           <ConnectorPoint PointX="5.25" PointY="2.9035953776041663" />
         </AssociationConnector>
         <AssociationConnector Association="cms_2Model.FK_Pictures_Categories" >
-          <ConnectorPoint PointX="4.1562525" PointY="7.5" />
-          <ConnectorPoint PointX="4.1562525" PointY="6.1562475" />
+          <ConnectorPoint PointX="4.054689375" PointY="7.5" />
+          <ConnectorPoint PointX="4.054689375" PointY="6.1562475" />
           <ConnectorPoint PointX="5.25" PointY="6.1562475" />
         </AssociationConnector>
         <AssociationConnector Association="cms_2Model.FK_Texts_Categories" >
@@ -536,13 +604,21 @@
           <ConnectorPoint PointX="5.25" PointY="9.5574446614583337" />
         </AssociationConnector>
         <AssociationConnector Association="cms_2Model.FK_Videos_Categories" >
-          <ConnectorPoint PointX="3.3437475" PointY="10.826396484375003" />
+          <ConnectorPoint PointX="3.3437475" PointY="11.018697916666667" />
           <ConnectorPoint PointX="3.3437475" PointY="12.778595377604166" />
           <ConnectorPoint PointX="3.6666666666666665" PointY="12.778595377604166" />
           <ConnectorPoint PointX="3.8333333333333335" PointY="12.778595377604166" />
           <ConnectorPoint PointX="4.0729191666666669" PointY="12.778595377604166" />
           <ConnectorPoint PointX="4.2395858333333329" PointY="12.778595377604166" />
+          <ConnectorPoint PointX="4.2760454166666664" PointY="12.778595377604166" />
+          <ConnectorPoint PointX="4.4427120833333325" PointY="12.778595377604166" />
           <ConnectorPoint PointX="5.25" PointY="12.778595377604166" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="cms_2Model.SiteConfig" Width="1.5" PointX="5.625" PointY="18.25" Height="1.9802864583333317" />
+        <AssociationConnector Association="cms_2Model.FK_SiteConfigs_Categories" >
+          <ConnectorPoint PointX="4.3593787499999994" PointY="11.018697916666667" />
+          <ConnectorPoint PointX="4.3593787499999994" PointY="19.240143229166666" />
+          <ConnectorPoint PointX="5.625" PointY="19.240143229166666" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

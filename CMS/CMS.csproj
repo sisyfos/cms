@@ -167,10 +167,12 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\LinkController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\PictureController.cs" />
     <Compile Include="Controllers\ShowCategoryController.cs" />
+    <Compile Include="Controllers\SiteConfigController.cs" />
     <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Controllers\TextController.cs" />
     <Compile Include="Controllers\VideoController.cs" />
@@ -189,6 +191,56 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Antlr3.Runtime.dll" />
+    <Content Include="bin\CMS.dll" />
+    <Content Include="bin\CMS.pdb" />
+    <Content Include="bin\DotNetOpenAuth.AspNet.dll" />
+    <Content Include="bin\DotNetOpenAuth.AspNet.xml" />
+    <Content Include="bin\DotNetOpenAuth.Core.dll" />
+    <Content Include="bin\DotNetOpenAuth.Core.xml" />
+    <Content Include="bin\DotNetOpenAuth.OAuth.Consumer.dll" />
+    <Content Include="bin\DotNetOpenAuth.OAuth.Consumer.xml" />
+    <Content Include="bin\DotNetOpenAuth.OAuth.dll" />
+    <Content Include="bin\DotNetOpenAuth.OAuth.xml" />
+    <Content Include="bin\DotNetOpenAuth.OpenId.dll" />
+    <Content Include="bin\DotNetOpenAuth.OpenId.RelyingParty.dll" />
+    <Content Include="bin\DotNetOpenAuth.OpenId.RelyingParty.xml" />
+    <Content Include="bin\DotNetOpenAuth.OpenId.xml" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.xml" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Microsoft.Web.WebPages.OAuth.dll" />
+    <Content Include="bin\Microsoft.Web.WebPages.OAuth.xml" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\Newtonsoft.Json.xml" />
+    <Content Include="bin\System.Net.Http.dll" />
+    <Content Include="bin\System.Net.Http.Formatting.dll" />
+    <Content Include="bin\System.Net.Http.Formatting.xml" />
+    <Content Include="bin\System.Net.Http.WebRequest.dll" />
+    <Content Include="bin\System.Net.Http.WebRequest.xml" />
+    <Content Include="bin\System.Net.Http.xml" />
+    <Content Include="bin\System.Web.Helpers.dll" />
+    <Content Include="bin\System.Web.Helpers.xml" />
+    <Content Include="bin\System.Web.Http.dll" />
+    <Content Include="bin\System.Web.Http.WebHost.dll" />
+    <Content Include="bin\System.Web.Http.WebHost.xml" />
+    <Content Include="bin\System.Web.Http.xml" />
+    <Content Include="bin\System.Web.Mvc.dll" />
+    <Content Include="bin\System.Web.Mvc.xml" />
+    <Content Include="bin\System.Web.Optimization.dll" />
+    <Content Include="bin\System.Web.Razor.dll" />
+    <Content Include="bin\System.Web.Razor.xml" />
+    <Content Include="bin\System.Web.WebPages.Deployment.dll" />
+    <Content Include="bin\System.Web.WebPages.Deployment.xml" />
+    <Content Include="bin\System.Web.WebPages.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.xml" />
+    <Content Include="bin\System.Web.WebPages.xml" />
+    <Content Include="bin\WebGrease.dll" />
+    <Content Include="bin\WebMatrix.Data.dll" />
+    <Content Include="bin\WebMatrix.Data.xml" />
+    <Content Include="bin\WebMatrix.WebData.dll" />
+    <Content Include="bin\WebMatrix.WebData.xml" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -245,6 +297,10 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="images_upload\images_upload0d1d6547-c531-4785-a18b-f5b956e121bd.JPG" />
+    <Content Include="images_upload\images_upload932fd416-2db4-481d-85fa-a67660440553.JPG" />
+    <Content Include="images_upload\images_uploada3a982fe-c09e-4cf4-ba25-5868da14dadb.JPG" />
+    <Content Include="images_upload\images_uploadf86a3ff8-05bb-478d-a7f9-4e7b8265bfe8.JPG" />
     <Content Include="Scripts\jquery-1.7.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
@@ -424,6 +480,30 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Menu\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SiteConfig\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SiteConfig\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SiteConfig\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SiteConfig\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SiteConfig\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Image\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\SiteInfo.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\ShowMenu.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

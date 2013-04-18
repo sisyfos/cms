@@ -25,6 +25,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("cms_2Model", "FK_Pictures_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CMS.Models.Category), "Picture", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Picture), true)]
 [assembly: EdmRelationshipAttribute("cms_2Model", "FK_Texts_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CMS.Models.Category), "Text", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Text), true)]
 [assembly: EdmRelationshipAttribute("cms_2Model", "FK_Videos_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CMS.Models.Category), "Video", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Video), true)]
+[assembly: EdmRelationshipAttribute("cms_2Model", "FK_SiteConfigs_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CMS.Models.Category), "SiteConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.SiteConfig), true)]
 
 #endregion
 
@@ -187,6 +188,22 @@ namespace CMS.Models
             }
         }
         private ObjectSet<CategoryRelation> _CategoryRelations;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<SiteConfig> SiteConfigs
+        {
+            get
+            {
+                if ((_SiteConfigs == null))
+                {
+                    _SiteConfigs = base.CreateObjectSet<SiteConfig>("SiteConfigs");
+                }
+                return _SiteConfigs;
+            }
+        }
+        private ObjectSet<SiteConfig> _SiteConfigs;
 
         #endregion
         #region AddTo Methods
@@ -245,6 +262,14 @@ namespace CMS.Models
         public void AddToCategoryRelations(CategoryRelation categoryRelation)
         {
             base.AddObject("CategoryRelations", categoryRelation);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the SiteConfigs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSiteConfigs(SiteConfig siteConfig)
+        {
+            base.AddObject("SiteConfigs", siteConfig);
         }
 
         #endregion
@@ -576,6 +601,28 @@ namespace CMS.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Video>("cms_2Model.FK_Videos_Categories", "Video", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_SiteConfigs_Categories", "SiteConfig")]
+        public EntityCollection<SiteConfig> SiteConfigs
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SiteConfig>("cms_2Model.FK_SiteConfigs_Categories", "SiteConfig");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SiteConfig>("cms_2Model.FK_SiteConfigs_Categories", "SiteConfig", value);
                 }
             }
         }
@@ -1272,6 +1319,174 @@ namespace CMS.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("cms_2Model.FK_Pictures_Categories", "Category", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="cms_2Model", Name="SiteConfig")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class SiteConfig : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new SiteConfig object.
+        /// </summary>
+        /// <param name="siteConfigID">Initial value of the SiteConfigID property.</param>
+        public static SiteConfig CreateSiteConfig(global::System.Int64 siteConfigID)
+        {
+            SiteConfig siteConfig = new SiteConfig();
+            siteConfig.SiteConfigID = siteConfigID;
+            return siteConfig;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 SiteConfigID
+        {
+            get
+            {
+                return _SiteConfigID;
+            }
+            set
+            {
+                if (_SiteConfigID != value)
+                {
+                    OnSiteConfigIDChanging(value);
+                    ReportPropertyChanging("SiteConfigID");
+                    _SiteConfigID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("SiteConfigID");
+                    OnSiteConfigIDChanged();
+                }
+            }
+        }
+        private global::System.Int64 _SiteConfigID;
+        partial void OnSiteConfigIDChanging(global::System.Int64 value);
+        partial void OnSiteConfigIDChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SiteName
+        {
+            get
+            {
+                return _SiteName;
+            }
+            set
+            {
+                OnSiteNameChanging(value);
+                ReportPropertyChanging("SiteName");
+                _SiteName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SiteName");
+                OnSiteNameChanged();
+            }
+        }
+        private global::System.String _SiteName;
+        partial void OnSiteNameChanging(global::System.String value);
+        partial void OnSiteNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SiteDesc
+        {
+            get
+            {
+                return _SiteDesc;
+            }
+            set
+            {
+                OnSiteDescChanging(value);
+                ReportPropertyChanging("SiteDesc");
+                _SiteDesc = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SiteDesc");
+                OnSiteDescChanged();
+            }
+        }
+        private global::System.String _SiteDesc;
+        partial void OnSiteDescChanging(global::System.String value);
+        partial void OnSiteDescChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int64> SiteStartCatID
+        {
+            get
+            {
+                return _SiteStartCatID;
+            }
+            set
+            {
+                OnSiteStartCatIDChanging(value);
+                ReportPropertyChanging("SiteStartCatID");
+                _SiteStartCatID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SiteStartCatID");
+                OnSiteStartCatIDChanged();
+            }
+        }
+        private Nullable<global::System.Int64> _SiteStartCatID;
+        partial void OnSiteStartCatIDChanging(Nullable<global::System.Int64> value);
+        partial void OnSiteStartCatIDChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_SiteConfigs_Categories", "Category")]
+        public Category Category
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_SiteConfigs_Categories", "Category").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_SiteConfigs_Categories", "Category").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Category> CategoryReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_SiteConfigs_Categories", "Category");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("cms_2Model.FK_SiteConfigs_Categories", "Category", value);
                 }
             }
         }

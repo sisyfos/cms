@@ -3,16 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CMS.Models;
 
 namespace CMS.Controllers
 {
     public class HomeController : Controller
     {
+        private cms_2Entities db = new cms_2Entities();
+
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
-
             return View();
+        }
+
+        [ChildActionOnly]
+        public ActionResult SiteInfo()
+        {
+            var siteconfig = db.SiteConfigs.First();
+
+            ViewBag.SiteName = siteconfig.SiteName;
+            ViewBag.SiteDesc = siteconfig.SiteDesc;
+
+            return PartialView();
+
         }
 
         public ActionResult About()
