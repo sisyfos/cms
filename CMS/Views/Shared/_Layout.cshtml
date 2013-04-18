@@ -10,15 +10,21 @@
     </head>
     <body>
         <header>
-            <div class="content-wrapper">
-                <div class="float-left">
-                    <p class="site-title">@Html.ActionLink("CMS Projektarbete", "Index", "Home")</p>
-                </div>
-                <div class="float-right">
+        <div class="float-login">
                     <section id="login">
                         @Html.Partial("_LoginPartial")
                     </section>
-                    <nav>
+                </div>
+                <div class="float-left">
+                    <p class="site-title">@Html.ActionLink("Sisyfos", "Index", "Home")</p>
+                </div>
+                <div class="float-center">
+                    <hgroup class="title">
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+                </div>
+
+              <nav>
                         <ul id="menu">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("About", "About", "Home")</li>
@@ -29,8 +35,6 @@
                             <li>@Html.ActionLink("Link", "Index", "Link")</li>
                         </ul>
                     </nav>
-                </div>
-            </div>
         </header>
         <div id="body">
             @RenderSection("featured", required: false)
