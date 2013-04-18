@@ -298,9 +298,12 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="images_upload\images_upload0d1d6547-c531-4785-a18b-f5b956e121bd.JPG" />
+<<<<<<< HEAD
     <Content Include="images_upload\images_upload932fd416-2db4-481d-85fa-a67660440553.JPG" />
     <Content Include="images_upload\images_uploada3a982fe-c09e-4cf4-ba25-5868da14dadb.JPG" />
     <Content Include="images_upload\images_uploadf86a3ff8-05bb-478d-a7f9-4e7b8265bfe8.JPG" />
+=======
+>>>>>>> caf5e1c80209baa14a2cc12bdd68a36274dccab3
     <Content Include="Scripts\jquery-1.7.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
@@ -482,6 +485,7 @@
     <Content Include="Views\Menu\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Content Include="Views\SiteConfig\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -507,9 +511,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Home\Imagenew.cshtml" />
+=======
+    <Content Include="Views\Image\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Imagenew.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\CategoryPartial.cshtml" />
+>>>>>>> caf5e1c80209baa14a2cc12bdd68a36274dccab3
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
