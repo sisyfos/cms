@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: #fff;
+    background-color:#000;
     border-top: solid 10px #000;
     color: #333;
     font-size: .85em;
@@ -27,10 +27,6 @@ a {
         color: #333;
     }
 
-    a:hover {
-        background-color: #c7d1d6;
-    }
-
 header, footer, hgroup,
 nav, section {
     display: block;
@@ -44,10 +40,24 @@ mark {
 
 .float-left {
     float: left;
+    margin:-5px 0 0 60px;
+}
+.float-center
+{
+    margin:20px 0 20px 30px;
+     float:left;
 }
 
-.float-right {
-    float: right;
+.float-center hgroup.title h2
+{
+    color:#fff;
+   
+    
+}
+
+.float-login 
+{
+    float:left;
 }
 
 .clear-fix:after {
@@ -148,16 +158,16 @@ footer {
 #login {
     display: block;
     font-size: .85em;
-    margin: 0 0 10px;
-    text-align: right;
+    text-align:left;
+    padding:0;
+    margin:-10px 0;
 }
 
     #login a {
-        background-color: #d3dce0;
-        margin-left: 10px;
-        margin-right: 3px;
         padding: 2px 3px;
         text-decoration: none;
+        color:#fff;
+        text-align:center;
     }
 
     #login a.username {
@@ -168,7 +178,7 @@ footer {
     }
 
     #login ul {
-        margin: 0;
+        width:200px;
     }
 
     #login li {
@@ -176,60 +186,54 @@ footer {
         list-style: none;
     }
 
-
 /* menu
 ----------------------------------------------------------*/
 ul#menu {
     font-size: 1.3em;
     font-weight: 600;
-    margin: 0 0 5px;
-    padding: 0;
-    text-align: right;
+    margin: 0px 0 15px;
+    padding-top: 10px;
+    padding-bottom:10px;
+    text-align: center;
+    border-bottom:1px solid #ccc;
+    border-top:1px solid #ccc;
+    width:450px;
+    float:right;
+    margin-right:20px;
+    position:relative;
 }
 
     ul#menu li {
         display: inline;
         list-style: none;
-        padding-left: 15px;
+        margin:auto;
+        padding:0 5px 0 5px;
+        position:relative;
+        float:left;
     }
 
         ul#menu li a {
             background: none;
             color: #999;
             text-decoration: none;
+            padding:0;
         }
 
         ul#menu li a:hover {
-            color: #333;
+            color: #fff;
             text-decoration: none;
+        }
+        
+        ul#menu li:hover 
+        {
+            
+            -webkit-transform: scale(1.2);
+            -webkit-transition: -webkit-transform .4s ease-in-out;
         }
 
 
 /* page elements
 ----------------------------------------------------------*/
-/* featured */
-.featured {
-    background-color: #fff;
-}
-
-    .featured .content-wrapper {
-        background-color: #7ac0da;
-        background-image: -ms-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        background-image: -o-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #7ac0da), color-stop(1, #a4d4e6));
-        background-image: -webkit-linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        background-image: linear-gradient(left, #7ac0da 0%, #a4d4e6 100%);
-        color: #3e5667;
-        padding: 20px 40px 30px 40px;
-    }
-
-        .featured hgroup.title h1, .featured hgroup.title h2 {
-            color: #fff;
-        }
-
-        .featured p {
-            font-size: 1.1em;
-        }
 
 /* page titles */
 hgroup.title {
@@ -245,12 +249,7 @@ hgroup.title h2 {
     margin-left: 3px;
 }
 
-/* features */
-section.feature {
-    width: 300px;
-    float: left;
-    padding: 10px;
-}
+
 
 /* ordered list */
 ol.round {

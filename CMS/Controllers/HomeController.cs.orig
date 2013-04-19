@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+<<<<<<< HEAD
 using CMS.Models;
-using CMS.Controllers;
 using System.IO;
 using CSharpVitamins;
+
+=======
+using CMS.Controllers;
+using System.IO;
 using System.Web.Helpers;
 using CMS.Models;
 using System.ComponentModel;
@@ -15,6 +19,7 @@ using System.Web.UI.WebControls;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+>>>>>>> caf5e1c80209baa14a2cc12bdd68a36274dccab3
 namespace CMS.Controllers
 {
     public class HomeController : Controller
@@ -23,6 +28,11 @@ namespace CMS.Controllers
 
         public ActionResult Index()
         {
+<<<<<<< HEAD
+=======
+            ViewBag.Message = "Create and design your own website!";
+
+>>>>>>> caf5e1c80209baa14a2cc12bdd68a36274dccab3
             return View();
         }
 

@@ -10,8 +10,19 @@
     </head>
     <body>
         <header>
-        <div class="float-login">
+<<<<<<< HEAD
+            <div class="content-wrapper">
+                <div class="float-left">
                     <p class="site-title">@Html.Action("SiteInfo", "Home")</p>
+                </div>
+                <div class="float-right">
+                    <section id="login">
+                        @Html.Partial("_LoginPartial")
+                    </section>                        
+                    <nav>
+                    @Html.Action("ShowMenu", "Menu")                    
+=======
+        <div class="float-login">
                     <section id="login">
                         @Html.Partial("_LoginPartial")
                     </section>                        
@@ -26,7 +37,13 @@
                 </div>
 
               <nav>
-                    @Html.Action("ShowMenu", "Menu")                    
+                    @*@Html.Partial("~/Views/Menu/Index.cshtml")*@
+                        <ul id="menu">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>               
+                        </ul>
+>>>>>>> caf5e1c80209baa14a2cc12bdd68a36274dccab3
                     </nav>
         </header>
         <div id="body">
