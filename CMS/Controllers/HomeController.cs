@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using CMS.Models;
 using System.IO;
+using CSharpVitamins;
 
 namespace CMS.Controllers
 {
@@ -70,12 +71,23 @@ namespace CMS.Controllers
             return View(model);
         }
 
+        [ChildActionOnly]
+        public ActionResult test()
+        {
+            var model = new ImageModel()
+            {
+                Images = Directory.EnumerateFiles(Server.MapPath("~/images_upload/"))
+                .Select(fn => "~/images_upload/" + Path.GetFileName(fn))
+            };
+            return PartialView(model);
+        }
+
         [HttpPost]
         public ActionResult Imagenew(ImageModel model)
         {
             if (ModelState.IsValid)
             {
-                string fileName = Guid.NewGuid().ToString();
+                string fileName = ShortGuid.NewGuid().ToString();
                 string serverPath = Server.MapPath("~");
                 string imagesPath = serverPath + "/images_upload";
                 string thumbPath = imagesPath + "/images_upload";

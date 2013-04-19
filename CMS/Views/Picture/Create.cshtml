@@ -24,8 +24,12 @@
             @Html.LabelFor(model => model.PicUrl)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.PicUrl)
-            @Html.ValidationMessageFor(model => model.PicUrl)
+@*            @Html.EditorFor(model => model.PicUrl)
+            @Html.ValidationMessageFor(model => model.PicUrl)*@
+            <select id="PicUrl" name="PicUrl">
+            @Html.Action("test", "Home")            
+            </select>
+
         </div>
 
         <div class="editor-label">
@@ -59,7 +63,7 @@
             @Html.DropDownList("CatID", String.Empty)
             @Html.ValidationMessageFor(model => model.CatID)
         </div>
-
+        
         <p>
             <input type="submit" value="Create" />
         </p>
