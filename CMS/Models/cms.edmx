@@ -55,7 +55,7 @@
           <Property Name="CatName" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="CatPrio" Type="bigint" />
           <Property Name="CatDesc" Type="nvarchar(max)" />
-          <Property Name="TempID" Type="bigint" Nullable="false" />
+          <Property Name="TempID" Type="bigint" />
         </EntityType>
         <EntityType Name="CategoryRelations">
           <Key>
@@ -132,7 +132,7 @@
           <Property Name="VidDateCreated" Type="timestamp" StoreGeneratedPattern="Computed" />
         </EntityType>
         <Association Name="FK_Categories_Templates">
-          <End Role="Templates" Type="cms_2Model.Store.Templates" Multiplicity="1" />
+          <End Role="Templates" Type="cms_2Model.Store.Templates" Multiplicity="0..1" />
           <End Role="Categories" Type="cms_2Model.Store.Categories" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Templates">

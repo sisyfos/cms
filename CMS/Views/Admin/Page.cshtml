@@ -10,6 +10,8 @@
 }
 
 <section class="content-wrapper">
-    <h3>Site configuration</h3>
-        <p class="halfwidth"> Partial site configuration</p>
+    <h3>Work with pages</h3>
+        @Html.Partial("_CategoryCreatePartial", new CMS.Models.Category())
+        <p class="halfwidth"> OR </p>
+        @Html.Partial("_CategoryEditPartial", Model)
 </section>

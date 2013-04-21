@@ -8,7 +8,6 @@ using CMS.Controllers;
 using System.IO;
 using CSharpVitamins;
 using System.Web.Helpers;
-using CMS.Models;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web.UI.WebControls;
@@ -95,16 +94,6 @@ namespace CMS.Controllers
             return View();
         }
 
-        public ActionResult Imagenew()
-        {
-            var model = new ImageModel()
-            {
-                Images = Directory.EnumerateFiles(Server.MapPath("~/images_upload/"))
-                .Select(fn => "~/images_upload/" + Path.GetFileName(fn))
-            };
-            return View(model);
-        }
-
         [ChildActionOnly]
         public ActionResult test()
         {
@@ -115,22 +104,5 @@ namespace CMS.Controllers
             };
             return PartialView(model);
         }
-
-        [HttpPost]
-        public ActionResult Imagenew(ImageModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                string fileName = ShortGuid.NewGuid().ToString();
-                string serverPath = Server.MapPath("~");
-                string imagesPath = serverPath + "/images_upload";
-                string thumbPath = imagesPath + "/images_upload";
-                string fullPath = imagesPath + "/images_upload";
-                ImageModel.ResizeAndSave(thumbPath, fileName, model.ImageUploaded.InputStream, 80, true);
-                ImageModel.ResizeAndSave(fullPath, fileName, model.ImageUploaded.InputStream, 600, true);
-            }
-            return RedirectToAction("Imagenew");
-        }
-
     }
 }

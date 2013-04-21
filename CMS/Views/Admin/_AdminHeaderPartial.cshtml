@@ -1,0 +1,25 @@
+﻿    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>You are inside the @ViewBag.Title!</h1>
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+            <ol class="round">
+                <li class="one">
+                    <h5>Configuration</h5>
+<!-- change this -->
+                    Configure your site @Html.ActionLink("Site Config", "Index", "SiteConfig").
+                </li>
+
+                <li class="two">
+                    <h5>Pages</h5>
+                    Create or edit pages @Html.ActionLink("here", "Page", "Admin").
+                </li>
+
+                <li class="three">
+                    <h5>Content</h5>
+                    Load your pages with content @Html.ActionLink("here", "Content", "Admin").
+                </li>
+            </ol>
+        </div>
+    </section>

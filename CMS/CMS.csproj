@@ -489,9 +489,6 @@
     <Content Include="Views\Home\Imagenew.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Admin\CategoryPartial.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\SiteConfig\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -510,13 +507,28 @@
     <Content Include="Views\Home\Imagenew.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Admin\CategoryPartial.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\Shared\ShowStartPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\test.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\_AdminHeaderPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\_CategoryCreatePartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\_CategoryEditPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\_ContentPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\Content.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\Page.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

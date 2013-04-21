@@ -1,0 +1,36 @@
+﻿@Html.ValidationSummary(true)
+
+    <fieldset class="halfwidth">
+        <legend>Add content</legend>
+
+        <div class="editor-label">
+            <label>Text</label>
+        </div>
+        <div class="editor-field">
+            @Html.ActionLink("Create new", "Create", "Text") |
+            @Html.ActionLink("Edit existing", "Index", "Text")
+        </div>
+        <div class="editor-label">
+            <label>Pictures</label>
+        </div>
+        <div class="editor-field">
+            @Html.ActionLink("Upload", "ImageNew", "Home")
+            @Html.ActionLink("Create new", "Create", "Picture") |
+            @Html.ActionLink("Edit existing", "Index", "Picture")
+        </div>
+        <div class="editor-label">
+            <label>Videos</label>
+        </div>
+        <div class="editor-field">
+            @Html.ActionLink("Create new", "Create", "Video") |
+            @Html.ActionLink("Edit existing", "Index", "Video")   
+        </div>
+        <div class="editor-label">
+            <label>Links</label>
+        </div>
+
+        <div class="editor-field">
+            @Html.ActionLink("Create new", "Create", "Link") |
+            @Html.ActionLink("Edit existing", "Index", "Link")
+        </div>
+    </fieldset>
