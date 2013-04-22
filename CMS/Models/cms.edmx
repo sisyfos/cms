@@ -7,7 +7,7 @@
     <Schema Namespace="cms_2Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="cms_2ModelStoreContainer">
           <EntitySet Name="Categories" EntityType="cms_2Model.Store.Categories" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CategoryRelations" EntityType="cms_2Model.Store.CategoryRelations" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ChildCategories" EntityType="cms_2Model.Store.ChildCategories" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Links" EntityType="cms_2Model.Store.Links" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Pictures" EntityType="cms_2Model.Store.Pictures" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SiteConfigs" EntityType="cms_2Model.Store.SiteConfigs" store:Type="Tables" Schema="dbo" />
@@ -18,13 +18,9 @@
             <End Role="Templates" EntitySet="Templates" />
             <End Role="Categories" EntitySet="Categories" />
           </AssociationSet>
-          <AssociationSet Name="FK_CategoryRelations_Categories" Association="cms_2Model.Store.FK_CategoryRelations_Categories">
+          <AssociationSet Name="FK_ChildCategories_Categories2" Association="cms_2Model.Store.FK_ChildCategories_Categories2">
             <End Role="Categories" EntitySet="Categories" />
-            <End Role="CategoryRelations" EntitySet="CategoryRelations" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CategoryRelations_Categories1" Association="cms_2Model.Store.FK_CategoryRelations_Categories1">
-            <End Role="Categories" EntitySet="Categories" />
-            <End Role="CategoryRelations" EntitySet="CategoryRelations" />
+            <End Role="ChildCategories" EntitySet="ChildCategories" />
           </AssociationSet>
           <AssociationSet Name="FK_Links_Categories" Association="cms_2Model.Store.FK_Links_Categories">
             <End Role="Categories" EntitySet="Categories" />
@@ -57,13 +53,12 @@
           <Property Name="CatDesc" Type="nvarchar(max)" />
           <Property Name="TempID" Type="bigint" Nullable="false" />
         </EntityType>
-        <EntityType Name="CategoryRelations">
+        <EntityType Name="ChildCategories">
           <Key>
-            <PropertyRef Name="CategoryRelationId" />
+            <PropertyRef Name="ChildCatId" />
           </Key>
-          <Property Name="CategoryRelationId" Type="bigint" Nullable="false" />
-          <Property Name="ParentCatID" Type="bigint" Nullable="false" />
-          <Property Name="ChildCatID" Type="bigint" Nullable="false" />
+          <Property Name="ChildCatId" Type="bigint" Nullable="false" />
+          <Property Name="ParentId" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="Links">
           <Key>
@@ -143,27 +138,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CategoryRelations_Categories">
+        <Association Name="FK_ChildCategories_Categories2">
           <End Role="Categories" Type="cms_2Model.Store.Categories" Multiplicity="1" />
-          <End Role="CategoryRelations" Type="cms_2Model.Store.CategoryRelations" Multiplicity="*" />
+          <End Role="ChildCategories" Type="cms_2Model.Store.ChildCategories" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Categories">
               <PropertyRef Name="CatID" />
             </Principal>
-            <Dependent Role="CategoryRelations">
-              <PropertyRef Name="ParentCatID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CategoryRelations_Categories1">
-          <End Role="Categories" Type="cms_2Model.Store.Categories" Multiplicity="1" />
-          <End Role="CategoryRelations" Type="cms_2Model.Store.CategoryRelations" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Categories">
-              <PropertyRef Name="CatID" />
-            </Principal>
-            <Dependent Role="CategoryRelations">
-              <PropertyRef Name="ChildCatID" />
+            <Dependent Role="ChildCategories">
+              <PropertyRef Name="ParentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -233,23 +216,20 @@
       <Schema Namespace="cms_2Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="cms_2Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categories" EntityType="cms_2Model.Category" />
+          <EntitySet Name="ChildCategories" EntityType="cms_2Model.ChildCategory" />
           <EntitySet Name="Links" EntityType="cms_2Model.Link" />
           <EntitySet Name="Pictures" EntityType="cms_2Model.Picture" />
+          <EntitySet Name="SiteConfigs" EntityType="cms_2Model.SiteConfig" />
           <EntitySet Name="Templates" EntityType="cms_2Model.Template" />
           <EntitySet Name="Texts" EntityType="cms_2Model.Text" />
           <EntitySet Name="Videos" EntityType="cms_2Model.Video" />
           <AssociationSet Name="FK_Categories_Templates" Association="cms_2Model.FK_Categories_Templates">
-            <End Role="Templates" EntitySet="Templates" />
-            <End Role="Categories" EntitySet="Categories" />
-          </AssociationSet>
-          <EntitySet Name="CategoryRelations" EntityType="cms_2Model.CategoryRelation" />
-          <AssociationSet Name="FK_CategoryRelations_Categories" Association="cms_2Model.FK_CategoryRelations_Categories">
+            <End Role="Template" EntitySet="Templates" />
             <End Role="Category" EntitySet="Categories" />
-            <End Role="CategoryRelation" EntitySet="CategoryRelations" />
           </AssociationSet>
-          <AssociationSet Name="FK_CategoryRelations_Categories1" Association="cms_2Model.FK_CategoryRelations_Categories1">
+          <AssociationSet Name="FK_ChildCategories_Categories2" Association="cms_2Model.FK_ChildCategories_Categories2">
             <End Role="Category" EntitySet="Categories" />
-            <End Role="CategoryRelation" EntitySet="CategoryRelations" />
+            <End Role="ChildCategory" EntitySet="ChildCategories" />
           </AssociationSet>
           <AssociationSet Name="FK_Links_Categories" Association="cms_2Model.FK_Links_Categories">
             <End Role="Category" EntitySet="Categories" />
@@ -259,6 +239,10 @@
             <End Role="Category" EntitySet="Categories" />
             <End Role="Picture" EntitySet="Pictures" />
           </AssociationSet>
+          <AssociationSet Name="FK_SiteConfigs_Categories" Association="cms_2Model.FK_SiteConfigs_Categories">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="SiteConfig" EntitySet="SiteConfigs" />
+          </AssociationSet>
           <AssociationSet Name="FK_Texts_Categories" Association="cms_2Model.FK_Texts_Categories">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Text" EntitySet="Texts" />
@@ -267,38 +251,40 @@
             <End Role="Category" EntitySet="Categories" />
             <End Role="Video" EntitySet="Videos" />
           </AssociationSet>
-          <EntitySet Name="SiteConfigs" EntityType="cms_2Model.SiteConfig" />
-          <AssociationSet Name="FK_SiteConfigs_Categories" Association="cms_2Model.FK_SiteConfigs_Categories">
-            <End Role="Category" EntitySet="Categories" />
-            <End Role="SiteConfig" EntitySet="SiteConfigs" />
-          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="CatID" />
           </Key>
-          <Property Name="CatID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CatName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="CatPrio" Type="Int64" />
-          <Property Name="CatDesc" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="TempID" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="Template" Relationship="cms_2Model.FK_Categories_Templates" FromRole="Categories" ToRole="Templates" />
-          <NavigationProperty Name="CategoryRelations" Relationship="cms_2Model.FK_CategoryRelations_Categories" FromRole="Category" ToRole="CategoryRelation" />
-          <NavigationProperty Name="CategoryRelations1" Relationship="cms_2Model.FK_CategoryRelations_Categories1" FromRole="Category" ToRole="CategoryRelation" />
+          <Property Type="Int64" Name="CatID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="CatName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="CatPrio" />
+          <Property Type="String" Name="CatDesc" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="TempID" Nullable="false" />
+          <NavigationProperty Name="Template" Relationship="cms_2Model.FK_Categories_Templates" FromRole="Category" ToRole="Template" />
+          <NavigationProperty Name="ChildCategories" Relationship="cms_2Model.FK_ChildCategories_Categories2" FromRole="Category" ToRole="ChildCategory" />
           <NavigationProperty Name="Links" Relationship="cms_2Model.FK_Links_Categories" FromRole="Category" ToRole="Link" />
           <NavigationProperty Name="Pictures" Relationship="cms_2Model.FK_Pictures_Categories" FromRole="Category" ToRole="Picture" />
+          <NavigationProperty Name="SiteConfigs" Relationship="cms_2Model.FK_SiteConfigs_Categories" FromRole="Category" ToRole="SiteConfig" />
           <NavigationProperty Name="Texts" Relationship="cms_2Model.FK_Texts_Categories" FromRole="Category" ToRole="Text" />
           <NavigationProperty Name="Videos" Relationship="cms_2Model.FK_Videos_Categories" FromRole="Category" ToRole="Video" />
-          <NavigationProperty Name="SiteConfigs" Relationship="cms_2Model.FK_SiteConfigs_Categories" FromRole="Category" ToRole="SiteConfig" />
+        </EntityType>
+        <EntityType Name="ChildCategory">
+          <Key>
+            <PropertyRef Name="ChildCatId" />
+          </Key>
+          <Property Type="Int64" Name="ChildCatId" Nullable="false" />
+          <Property Type="Int64" Name="ParentId" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="cms_2Model.FK_ChildCategories_Categories2" FromRole="ChildCategory" ToRole="Category" />
         </EntityType>
         <EntityType Name="Link">
           <Key>
             <PropertyRef Name="LinkID" />
           </Key>
-          <Property Name="LinkID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LinkTitle" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="LinkUrl" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="LinkText" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Type="Int64" Name="LinkID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="LinkTitle" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LinkUrl" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LinkText" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Int64" Name="LinkPrio" />
           <Property Type="Int64" Name="CatID" />
           <Property Type="Binary" Name="LinkDateCreated" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
@@ -308,33 +294,43 @@
           <Key>
             <PropertyRef Name="PicID" />
           </Key>
-          <Property Name="PicID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PicTitle" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="PicUrl" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="PicAltText" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="PicDesc" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="Int64" Name="PicID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="PicTitle" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PicUrl" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PicAltText" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PicDesc" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="Int64" Name="PicPrio" />
           <Property Type="Int64" Name="CatID" />
           <Property Type="Binary" Name="PicDateCreated" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="Category" Relationship="cms_2Model.FK_Pictures_Categories" FromRole="Picture" ToRole="Category" />
         </EntityType>
+        <EntityType Name="SiteConfig">
+          <Key>
+            <PropertyRef Name="SiteConfigID" />
+          </Key>
+          <Property Type="Int64" Name="SiteConfigID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="SiteName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SiteDesc" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="SiteStartCatID" />
+          <NavigationProperty Name="Category" Relationship="cms_2Model.FK_SiteConfigs_Categories" FromRole="SiteConfig" ToRole="Category" />
+        </EntityType>
         <EntityType Name="Template">
           <Key>
             <PropertyRef Name="TempID" />
           </Key>
-          <Property Name="TempID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TempName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="TempDesc" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="TempURL" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Categories" Relationship="cms_2Model.FK_Categories_Templates" FromRole="Templates" ToRole="Categories" />
+          <Property Type="Int64" Name="TempID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="TempName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TempDesc" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TempURL" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Categories" Relationship="cms_2Model.FK_Categories_Templates" FromRole="Template" ToRole="Category" />
         </EntityType>
         <EntityType Name="Text">
           <Key>
             <PropertyRef Name="TextID" />
           </Key>
-          <Property Name="TextID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TextTitle" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="TextData" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="Int64" Name="TextID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="TextTitle" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TextData" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="Int64" Name="TextPrio" />
           <Property Type="Int64" Name="CatID" />
           <Property Type="Binary" Name="TextDateCreated" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
@@ -344,58 +340,36 @@
           <Key>
             <PropertyRef Name="VidID" />
           </Key>
-          <Property Name="VidID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="VidTitle" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="VidUrl" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="VidDesc" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="Int64" Name="VidID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="VidTitle" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="VidUrl" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="VidDesc" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="Int64" Name="VidPrio" />
           <Property Type="Int64" Name="CatID" />
           <Property Type="Binary" Name="VidDateCreated" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="Category" Relationship="cms_2Model.FK_Videos_Categories" FromRole="Video" ToRole="Category" />
         </EntityType>
         <Association Name="FK_Categories_Templates">
-          <End Role="Templates" Type="cms_2Model.Template" Multiplicity="1" />
-          <End Role="Categories" Type="cms_2Model.Category" Multiplicity="*" />
+          <End Type="cms_2Model.Template" Role="Template" Multiplicity="1" />
+          <End Type="cms_2Model.Category" Role="Category" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Templates">
+            <Principal Role="Template">
               <PropertyRef Name="TempID" />
             </Principal>
-            <Dependent Role="Categories">
+            <Dependent Role="Category">
               <PropertyRef Name="TempID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="CategoryRelation">
-          <Key>
-            <PropertyRef Name="CategoryRelationId" />
-          </Key>
-          <Property Type="Int64" Name="CategoryRelationId" Nullable="false" />
-          <Property Type="Int64" Name="ParentCatID" Nullable="false" />
-          <Property Type="Int64" Name="ChildCatID" Nullable="false" />
-          <NavigationProperty Name="Category" Relationship="cms_2Model.FK_CategoryRelations_Categories" FromRole="CategoryRelation" ToRole="Category" />
-          <NavigationProperty Name="Category1" Relationship="cms_2Model.FK_CategoryRelations_Categories1" FromRole="CategoryRelation" ToRole="Category" />
-        </EntityType>
-        <Association Name="FK_CategoryRelations_Categories">
+        <Association Name="FK_ChildCategories_Categories2">
           <End Type="cms_2Model.Category" Role="Category" Multiplicity="1" />
-          <End Type="cms_2Model.CategoryRelation" Role="CategoryRelation" Multiplicity="*" />
+          <End Type="cms_2Model.ChildCategory" Role="ChildCategory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
               <PropertyRef Name="CatID" />
             </Principal>
-            <Dependent Role="CategoryRelation">
-              <PropertyRef Name="ParentCatID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CategoryRelations_Categories1">
-          <End Type="cms_2Model.Category" Role="Category" Multiplicity="1" />
-          <End Type="cms_2Model.CategoryRelation" Role="CategoryRelation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="CatID" />
-            </Principal>
-            <Dependent Role="CategoryRelation">
-              <PropertyRef Name="ChildCatID" />
+            <Dependent Role="ChildCategory">
+              <PropertyRef Name="ParentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -423,6 +397,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SiteConfigs_Categories">
+          <End Type="cms_2Model.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="cms_2Model.SiteConfig" Role="SiteConfig" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CatID" />
+            </Principal>
+            <Dependent Role="SiteConfig">
+              <PropertyRef Name="SiteStartCatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Texts_Categories">
           <End Type="cms_2Model.Category" Role="Category" Multiplicity="0..1" />
           <End Type="cms_2Model.Text" Role="Text" Multiplicity="*" />
@@ -447,89 +433,55 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="SiteConfig">
-          <Key>
-            <PropertyRef Name="SiteConfigID" />
-          </Key>
-          <Property Type="Int64" Name="SiteConfigID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="SiteName" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="SiteDesc" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="Int64" Name="SiteStartCatID" />
-          <NavigationProperty Name="Category" Relationship="cms_2Model.FK_SiteConfigs_Categories" FromRole="SiteConfig" ToRole="Category" />
-        </EntityType>
-        <Association Name="FK_SiteConfigs_Categories">
-          <End Type="cms_2Model.Category" Role="Category" Multiplicity="0..1" />
-          <End Type="cms_2Model.SiteConfig" Role="SiteConfig" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="CatID" />
-            </Principal>
-            <Dependent Role="SiteConfig">
-              <PropertyRef Name="SiteStartCatID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="cms_2ModelStoreContainer" CdmEntityContainer="cms_2Entities">
-          <EntitySetMapping Name="Categories"><EntityTypeMapping TypeName="cms_2Model.Category"><MappingFragment StoreEntitySet="Categories">
-            <ScalarProperty Name="CatID" ColumnName="CatID" />
-            <ScalarProperty Name="CatName" ColumnName="CatName" />
-            <ScalarProperty Name="CatPrio" ColumnName="CatPrio" />
-            <ScalarProperty Name="CatDesc" ColumnName="CatDesc" />
-            <ScalarProperty Name="TempID" ColumnName="TempID" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Links"><EntityTypeMapping TypeName="cms_2Model.Link"><MappingFragment StoreEntitySet="Links">
-            <ScalarProperty Name="LinkDateCreated" ColumnName="LinkDateCreated" />
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="cms_2Model.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="TempID" ColumnName="TempID" />
+                <ScalarProperty Name="CatDesc" ColumnName="CatDesc" />
+                <ScalarProperty Name="CatPrio" ColumnName="CatPrio" />
+                <ScalarProperty Name="CatName" ColumnName="CatName" />
+                <ScalarProperty Name="CatID" ColumnName="CatID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChildCategories">
+            <EntityTypeMapping TypeName="cms_2Model.ChildCategory">
+              <MappingFragment StoreEntitySet="ChildCategories">
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="ChildCatId" ColumnName="ChildCatId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Links">
+            <EntityTypeMapping TypeName="cms_2Model.Link">
+              <MappingFragment StoreEntitySet="Links">
+                <ScalarProperty Name="LinkDateCreated" ColumnName="LinkDateCreated" />
                 <ScalarProperty Name="CatID" ColumnName="CatID" />
                 <ScalarProperty Name="LinkPrio" ColumnName="LinkPrio" />
+                <ScalarProperty Name="LinkText" ColumnName="LinkText" />
+                <ScalarProperty Name="LinkUrl" ColumnName="LinkUrl" />
+                <ScalarProperty Name="LinkTitle" ColumnName="LinkTitle" />
                 <ScalarProperty Name="LinkID" ColumnName="LinkID" />
-            <ScalarProperty Name="LinkTitle" ColumnName="LinkTitle" />
-            <ScalarProperty Name="LinkUrl" ColumnName="LinkUrl" />
-            <ScalarProperty Name="LinkText" ColumnName="LinkText" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Pictures"><EntityTypeMapping TypeName="cms_2Model.Picture"><MappingFragment StoreEntitySet="Pictures">
-            <ScalarProperty Name="PicDateCreated" ColumnName="PicDateCreated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pictures">
+            <EntityTypeMapping TypeName="cms_2Model.Picture">
+              <MappingFragment StoreEntitySet="Pictures">
+                <ScalarProperty Name="PicDateCreated" ColumnName="PicDateCreated" />
                 <ScalarProperty Name="CatID" ColumnName="CatID" />
                 <ScalarProperty Name="PicPrio" ColumnName="PicPrio" />
+                <ScalarProperty Name="PicDesc" ColumnName="PicDesc" />
+                <ScalarProperty Name="PicAltText" ColumnName="PicAltText" />
+                <ScalarProperty Name="PicUrl" ColumnName="PicUrl" />
+                <ScalarProperty Name="PicTitle" ColumnName="PicTitle" />
                 <ScalarProperty Name="PicID" ColumnName="PicID" />
-            <ScalarProperty Name="PicTitle" ColumnName="PicTitle" />
-            <ScalarProperty Name="PicUrl" ColumnName="PicUrl" />
-            <ScalarProperty Name="PicAltText" ColumnName="PicAltText" />
-            <ScalarProperty Name="PicDesc" ColumnName="PicDesc" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Templates"><EntityTypeMapping TypeName="cms_2Model.Template"><MappingFragment StoreEntitySet="Templates">
-            <ScalarProperty Name="TempID" ColumnName="TempID" />
-            <ScalarProperty Name="TempName" ColumnName="TempName" />
-            <ScalarProperty Name="TempDesc" ColumnName="TempDesc" />
-            <ScalarProperty Name="TempURL" ColumnName="TempURL" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Texts"><EntityTypeMapping TypeName="cms_2Model.Text"><MappingFragment StoreEntitySet="Texts">
-            <ScalarProperty Name="TextDateCreated" ColumnName="TextDateCreated" />
-                <ScalarProperty Name="CatID" ColumnName="CatID" />
-                <ScalarProperty Name="TextPrio" ColumnName="TextPrio" />
-                <ScalarProperty Name="TextID" ColumnName="TextID" />
-            <ScalarProperty Name="TextTitle" ColumnName="TextTitle" />
-            <ScalarProperty Name="TextData" ColumnName="TextData" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="Videos"><EntityTypeMapping TypeName="cms_2Model.Video"><MappingFragment StoreEntitySet="Videos">
-            <ScalarProperty Name="VidDateCreated" ColumnName="VidDateCreated" />
-                <ScalarProperty Name="CatID" ColumnName="CatID" />
-                <ScalarProperty Name="VidPrio" ColumnName="VidPrio" />
-                <ScalarProperty Name="VidID" ColumnName="VidID" />
-            <ScalarProperty Name="VidTitle" ColumnName="VidTitle" />
-            <ScalarProperty Name="VidUrl" ColumnName="VidUrl" />
-            <ScalarProperty Name="VidDesc" ColumnName="VidDesc" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="CategoryRelations">
-            <EntityTypeMapping TypeName="cms_2Model.CategoryRelation">
-              <MappingFragment StoreEntitySet="CategoryRelations">
-                <ScalarProperty Name="ChildCatID" ColumnName="ChildCatID" />
-                <ScalarProperty Name="ParentCatID" ColumnName="ParentCatID" />
-                <ScalarProperty Name="CategoryRelationId" ColumnName="CategoryRelationId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -540,6 +492,41 @@
                 <ScalarProperty Name="SiteDesc" ColumnName="SiteDesc" />
                 <ScalarProperty Name="SiteName" ColumnName="SiteName" />
                 <ScalarProperty Name="SiteConfigID" ColumnName="SiteConfigID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Templates">
+            <EntityTypeMapping TypeName="cms_2Model.Template">
+              <MappingFragment StoreEntitySet="Templates">
+                <ScalarProperty Name="TempURL" ColumnName="TempURL" />
+                <ScalarProperty Name="TempDesc" ColumnName="TempDesc" />
+                <ScalarProperty Name="TempName" ColumnName="TempName" />
+                <ScalarProperty Name="TempID" ColumnName="TempID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Texts">
+            <EntityTypeMapping TypeName="cms_2Model.Text">
+              <MappingFragment StoreEntitySet="Texts">
+                <ScalarProperty Name="TextDateCreated" ColumnName="TextDateCreated" />
+                <ScalarProperty Name="CatID" ColumnName="CatID" />
+                <ScalarProperty Name="TextPrio" ColumnName="TextPrio" />
+                <ScalarProperty Name="TextData" ColumnName="TextData" />
+                <ScalarProperty Name="TextTitle" ColumnName="TextTitle" />
+                <ScalarProperty Name="TextID" ColumnName="TextID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Videos">
+            <EntityTypeMapping TypeName="cms_2Model.Video">
+              <MappingFragment StoreEntitySet="Videos">
+                <ScalarProperty Name="VidDateCreated" ColumnName="VidDateCreated" />
+                <ScalarProperty Name="CatID" ColumnName="CatID" />
+                <ScalarProperty Name="VidPrio" ColumnName="VidPrio" />
+                <ScalarProperty Name="VidDesc" ColumnName="VidDesc" />
+                <ScalarProperty Name="VidUrl" ColumnName="VidUrl" />
+                <ScalarProperty Name="VidTitle" ColumnName="VidTitle" />
+                <ScalarProperty Name="VidID" ColumnName="VidID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -563,62 +550,48 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
-      <Diagram Name="cms">
-        <EntityTypeShape EntityType="cms_2Model.Category" Width="1.5" PointX="3" PointY="7.5" Height="3.3263964843750031" IsExpanded="true" />
-        <EntityTypeShape EntityType="cms_2Model.Link" Width="1.5" PointX="5.25" PointY="1.625" Height="2.5571907552083326" IsExpanded="true" />
-        <EntityTypeShape EntityType="cms_2Model.Picture" Width="1.5" PointX="5.25" PointY="4.875" Height="2.7494921874999996" IsExpanded="true" />
-        <EntityTypeShape EntityType="cms_2Model.Template" Width="1.5" PointX="0.75" PointY="8.25" Height="1.9802864583333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="cms_2Model.Text" Width="1.5" PointX="5.25" PointY="8.375" Height="2.3648893229166674" IsExpanded="true" />
-        <EntityTypeShape EntityType="cms_2Model.Video" Width="1.5" PointX="5.25" PointY="11.5" Height="2.5571907552083317" IsExpanded="true" />
-        <AssociationConnector Association="cms_2Model.FK_Categories_Templates" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="9.2401432291666659" />
-          <ConnectorPoint PointX="3" PointY="9.2401432291666659" />
+      <Diagram Name="cms" ZoomLevel="75">
+        <EntityTypeShape EntityType="cms_2Model.Category" Width="1.5" PointX="3" PointY="8.875" Height="3.3263964843750031" />
+        <EntityTypeShape EntityType="cms_2Model.ChildCategory" Width="1.5" PointX="5.25" PointY="1.75" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="cms_2Model.Link" Width="1.5" PointX="5.25" PointY="4" Height="2.5571907552083388" />
+        <EntityTypeShape EntityType="cms_2Model.Picture" Width="1.5" PointX="5.25" PointY="7.375" Height="2.7494921875000031" />
+        <EntityTypeShape EntityType="cms_2Model.SiteConfig" Width="1.5" PointX="5.25" PointY="10.875" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="cms_2Model.Template" Width="1.5" PointX="0.75" PointY="9.5" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="cms_2Model.Text" Width="1.5" PointX="5.25" PointY="13.625" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="cms_2Model.Video" Width="1.5" PointX="5.25" PointY="16.75" Height="2.5571907552083246" />
+        <AssociationConnector Association="cms_2Model.FK_Categories_Templates" >
+          <ConnectorPoint PointX="2.25" PointY="10.490143229166669" />
+          <ConnectorPoint PointX="3" PointY="10.490143229166669" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="cms_2Model.CategoryRelation" Width="1.5" PointX="5.25" PointY="14.875" Height="1.9802864583333317" />
-        <AssociationConnector Association="cms_2Model.FK_CategoryRelations_Categories" >
-          <ConnectorPoint PointX="3.75" PointY="11.018697916666667" />
-          <ConnectorPoint PointX="3.75" PointY="16.128305286458332" />
-          <ConnectorPoint PointX="4.2760454166666664" PointY="16.128305286458332" />
-          <ConnectorPoint PointX="4.4427120833333325" PointY="16.128305286458332" />
-          <ConnectorPoint PointX="5.25" PointY="16.128305286458332" />
-        </AssociationConnector>
-        <AssociationConnector Association="cms_2Model.FK_CategoryRelations_Categories1" >
-          <ConnectorPoint PointX="4.1562525" PointY="11.018697916666667" />
-          <ConnectorPoint PointX="4.1562525" PointY="15.470400143229165" />
-          <ConnectorPoint PointX="4.2760454166666664" PointY="15.470400143229165" />
-          <ConnectorPoint PointX="4.4427120833333325" PointY="15.470400143229165" />
-          <ConnectorPoint PointX="5.25" PointY="15.470400143229165" />
+        <AssociationConnector Association="cms_2Model.FK_ChildCategories_Categories2" >
+          <ConnectorPoint PointX="3.75" PointY="8.875" />
+          <ConnectorPoint PointX="3.75" PointY="2.5478417968750016" />
+          <ConnectorPoint PointX="5.25" PointY="2.5478417968750016" />
         </AssociationConnector>
         <AssociationConnector Association="cms_2Model.FK_Links_Categories" >
-          <ConnectorPoint PointX="3.54687375" PointY="7.5" />
-          <ConnectorPoint PointX="3.54687375" PointY="2.9035953776041663" />
-          <ConnectorPoint PointX="5.25" PointY="2.9035953776041663" />
+          <ConnectorPoint PointX="4.1562525" PointY="8.875" />
+          <ConnectorPoint PointX="4.1562525" PointY="5.2785953776041694" />
+          <ConnectorPoint PointX="5.25" PointY="5.2785953776041694" />
         </AssociationConnector>
         <AssociationConnector Association="cms_2Model.FK_Pictures_Categories" >
-          <ConnectorPoint PointX="4.054689375" PointY="7.5" />
-          <ConnectorPoint PointX="4.054689375" PointY="6.1562475" />
-          <ConnectorPoint PointX="5.25" PointY="6.1562475" />
+          <ConnectorPoint PointX="4.5" PointY="9.4997460937500016" />
+          <ConnectorPoint PointX="5.25" PointY="9.4997460937500016" />
+        </AssociationConnector>
+        <AssociationConnector Association="cms_2Model.FK_SiteConfigs_Categories" >
+          <ConnectorPoint PointX="4.5" PointY="11.538198242187502" />
+          <ConnectorPoint PointX="5.25" PointY="11.538198242187502" />
         </AssociationConnector>
         <AssociationConnector Association="cms_2Model.FK_Texts_Categories" >
-          <ConnectorPoint PointX="4.5" PointY="9.5574446614583337" />
-          <ConnectorPoint PointX="5.25" PointY="9.5574446614583337" />
+          <ConnectorPoint PointX="3.75" PointY="12.201396484375003" />
+          <ConnectorPoint PointX="3.75" PointY="14.807444661458334" />
+          <ConnectorPoint PointX="4.0729191666666669" PointY="14.807444661458334" />
+          <ConnectorPoint PointX="4.2395858333333329" PointY="14.807444661458334" />
+          <ConnectorPoint PointX="5.25" PointY="14.807444661458334" />
         </AssociationConnector>
         <AssociationConnector Association="cms_2Model.FK_Videos_Categories" >
-          <ConnectorPoint PointX="3.3437475" PointY="11.018697916666667" />
-          <ConnectorPoint PointX="3.3437475" PointY="12.778595377604166" />
-          <ConnectorPoint PointX="3.6666666666666665" PointY="12.778595377604166" />
-          <ConnectorPoint PointX="3.8333333333333335" PointY="12.778595377604166" />
-          <ConnectorPoint PointX="4.0729191666666669" PointY="12.778595377604166" />
-          <ConnectorPoint PointX="4.2395858333333329" PointY="12.778595377604166" />
-          <ConnectorPoint PointX="4.2760454166666664" PointY="12.778595377604166" />
-          <ConnectorPoint PointX="4.4427120833333325" PointY="12.778595377604166" />
-          <ConnectorPoint PointX="5.25" PointY="12.778595377604166" />
-        </AssociationConnector>
-        <EntityTypeShape EntityType="cms_2Model.SiteConfig" Width="1.5" PointX="5.625" PointY="18.25" Height="1.9802864583333317" />
-        <AssociationConnector Association="cms_2Model.FK_SiteConfigs_Categories" >
-          <ConnectorPoint PointX="4.3593787499999994" PointY="11.018697916666667" />
-          <ConnectorPoint PointX="4.3593787499999994" PointY="19.240143229166666" />
-          <ConnectorPoint PointX="5.625" PointY="19.240143229166666" />
+          <ConnectorPoint PointX="4.1562525" PointY="12.201396484375003" />
+          <ConnectorPoint PointX="4.1562525" PointY="18.028595377604162" />
+          <ConnectorPoint PointX="5.25" PointY="18.028595377604162" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

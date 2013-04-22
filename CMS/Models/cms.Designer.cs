@@ -18,14 +18,13 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("cms_2Model", "FK_Categories_Templates", "Templates", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CMS.Models.Template), "Categories", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Category), true)]
-[assembly: EdmRelationshipAttribute("cms_2Model", "FK_CategoryRelations_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CMS.Models.Category), "CategoryRelation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.CategoryRelation), true)]
-[assembly: EdmRelationshipAttribute("cms_2Model", "FK_CategoryRelations_Categories1", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CMS.Models.Category), "CategoryRelation", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.CategoryRelation), true)]
+[assembly: EdmRelationshipAttribute("cms_2Model", "FK_Categories_Templates", "Template", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CMS.Models.Template), "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Category), true)]
+[assembly: EdmRelationshipAttribute("cms_2Model", "FK_ChildCategories_Categories2", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CMS.Models.Category), "ChildCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.ChildCategory), true)]
 [assembly: EdmRelationshipAttribute("cms_2Model", "FK_Links_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CMS.Models.Category), "Link", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Link), true)]
 [assembly: EdmRelationshipAttribute("cms_2Model", "FK_Pictures_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CMS.Models.Category), "Picture", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Picture), true)]
+[assembly: EdmRelationshipAttribute("cms_2Model", "FK_SiteConfigs_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CMS.Models.Category), "SiteConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.SiteConfig), true)]
 [assembly: EdmRelationshipAttribute("cms_2Model", "FK_Texts_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CMS.Models.Category), "Text", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Text), true)]
 [assembly: EdmRelationshipAttribute("cms_2Model", "FK_Videos_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CMS.Models.Category), "Video", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Video), true)]
-[assembly: EdmRelationshipAttribute("cms_2Model", "FK_SiteConfigs_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CMS.Models.Category), "SiteConfig", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.SiteConfig), true)]
 
 #endregion
 
@@ -96,6 +95,22 @@ namespace CMS.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<ChildCategory> ChildCategories
+        {
+            get
+            {
+                if ((_ChildCategories == null))
+                {
+                    _ChildCategories = base.CreateObjectSet<ChildCategory>("ChildCategories");
+                }
+                return _ChildCategories;
+            }
+        }
+        private ObjectSet<ChildCategory> _ChildCategories;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Link> Links
         {
             get
@@ -124,6 +139,22 @@ namespace CMS.Models
             }
         }
         private ObjectSet<Picture> _Pictures;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<SiteConfig> SiteConfigs
+        {
+            get
+            {
+                if ((_SiteConfigs == null))
+                {
+                    _SiteConfigs = base.CreateObjectSet<SiteConfig>("SiteConfigs");
+                }
+                return _SiteConfigs;
+            }
+        }
+        private ObjectSet<SiteConfig> _SiteConfigs;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -172,38 +203,6 @@ namespace CMS.Models
             }
         }
         private ObjectSet<Video> _Videos;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<CategoryRelation> CategoryRelations
-        {
-            get
-            {
-                if ((_CategoryRelations == null))
-                {
-                    _CategoryRelations = base.CreateObjectSet<CategoryRelation>("CategoryRelations");
-                }
-                return _CategoryRelations;
-            }
-        }
-        private ObjectSet<CategoryRelation> _CategoryRelations;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<SiteConfig> SiteConfigs
-        {
-            get
-            {
-                if ((_SiteConfigs == null))
-                {
-                    _SiteConfigs = base.CreateObjectSet<SiteConfig>("SiteConfigs");
-                }
-                return _SiteConfigs;
-            }
-        }
-        private ObjectSet<SiteConfig> _SiteConfigs;
 
         #endregion
         #region AddTo Methods
@@ -214,6 +213,14 @@ namespace CMS.Models
         public void AddToCategories(Category category)
         {
             base.AddObject("Categories", category);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the ChildCategories EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToChildCategories(ChildCategory childCategory)
+        {
+            base.AddObject("ChildCategories", childCategory);
         }
     
         /// <summary>
@@ -230,6 +237,14 @@ namespace CMS.Models
         public void AddToPictures(Picture picture)
         {
             base.AddObject("Pictures", picture);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the SiteConfigs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToSiteConfigs(SiteConfig siteConfig)
+        {
+            base.AddObject("SiteConfigs", siteConfig);
         }
     
         /// <summary>
@@ -254,22 +269,6 @@ namespace CMS.Models
         public void AddToVideos(Video video)
         {
             base.AddObject("Videos", video);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the CategoryRelations EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToCategoryRelations(CategoryRelation categoryRelation)
-        {
-            base.AddObject("CategoryRelations", categoryRelation);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the SiteConfigs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToSiteConfigs(SiteConfig siteConfig)
-        {
-            base.AddObject("SiteConfigs", siteConfig);
         }
 
         #endregion
@@ -441,16 +440,16 @@ namespace CMS.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_Categories_Templates", "Templates")]
+        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_Categories_Templates", "Template")]
         public Template Template
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Template>("cms_2Model.FK_Categories_Templates", "Templates").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Template>("cms_2Model.FK_Categories_Templates", "Template").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Template>("cms_2Model.FK_Categories_Templates", "Templates").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Template>("cms_2Model.FK_Categories_Templates", "Template").Value = value;
             }
         }
         /// <summary>
@@ -462,13 +461,13 @@ namespace CMS.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Template>("cms_2Model.FK_Categories_Templates", "Templates");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Template>("cms_2Model.FK_Categories_Templates", "Template");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Template>("cms_2Model.FK_Categories_Templates", "Templates", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Template>("cms_2Model.FK_Categories_Templates", "Template", value);
                 }
             }
         }
@@ -479,40 +478,18 @@ namespace CMS.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_CategoryRelations_Categories", "CategoryRelation")]
-        public EntityCollection<CategoryRelation> CategoryRelations
+        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_ChildCategories_Categories2", "ChildCategory")]
+        public EntityCollection<ChildCategory> ChildCategories
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CategoryRelation>("cms_2Model.FK_CategoryRelations_Categories", "CategoryRelation");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<ChildCategory>("cms_2Model.FK_ChildCategories_Categories2", "ChildCategory");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CategoryRelation>("cms_2Model.FK_CategoryRelations_Categories", "CategoryRelation", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_CategoryRelations_Categories1", "CategoryRelation")]
-        public EntityCollection<CategoryRelation> CategoryRelations1
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<CategoryRelation>("cms_2Model.FK_CategoryRelations_Categories1", "CategoryRelation");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<CategoryRelation>("cms_2Model.FK_CategoryRelations_Categories1", "CategoryRelation", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<ChildCategory>("cms_2Model.FK_ChildCategories_Categories2", "ChildCategory", value);
                 }
             }
         }
@@ -567,6 +544,28 @@ namespace CMS.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_SiteConfigs_Categories", "SiteConfig")]
+        public EntityCollection<SiteConfig> SiteConfigs
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SiteConfig>("cms_2Model.FK_SiteConfigs_Categories", "SiteConfig");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SiteConfig>("cms_2Model.FK_SiteConfigs_Categories", "SiteConfig", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_Texts_Categories", "Text")]
         public EntityCollection<Text> Texts
         {
@@ -604,28 +603,6 @@ namespace CMS.Models
                 }
             }
         }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_SiteConfigs_Categories", "SiteConfig")]
-        public EntityCollection<SiteConfig> SiteConfigs
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<SiteConfig>("cms_2Model.FK_SiteConfigs_Categories", "SiteConfig");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<SiteConfig>("cms_2Model.FK_SiteConfigs_Categories", "SiteConfig", value);
-                }
-            }
-        }
 
         #endregion
     }
@@ -633,26 +610,24 @@ namespace CMS.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="cms_2Model", Name="CategoryRelation")]
+    [EdmEntityTypeAttribute(NamespaceName="cms_2Model", Name="ChildCategory")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
-    public partial class CategoryRelation : EntityObject
+    public partial class ChildCategory : EntityObject
     {
         #region Factory Method
     
         /// <summary>
-        /// Create a new CategoryRelation object.
+        /// Create a new ChildCategory object.
         /// </summary>
-        /// <param name="categoryRelationId">Initial value of the CategoryRelationId property.</param>
-        /// <param name="parentCatID">Initial value of the ParentCatID property.</param>
-        /// <param name="childCatID">Initial value of the ChildCatID property.</param>
-        public static CategoryRelation CreateCategoryRelation(global::System.Int64 categoryRelationId, global::System.Int64 parentCatID, global::System.Int64 childCatID)
+        /// <param name="childCatId">Initial value of the ChildCatId property.</param>
+        /// <param name="parentId">Initial value of the ParentId property.</param>
+        public static ChildCategory CreateChildCategory(global::System.Int64 childCatId, global::System.Int64 parentId)
         {
-            CategoryRelation categoryRelation = new CategoryRelation();
-            categoryRelation.CategoryRelationId = categoryRelationId;
-            categoryRelation.ParentCatID = parentCatID;
-            categoryRelation.ChildCatID = childCatID;
-            return categoryRelation;
+            ChildCategory childCategory = new ChildCategory();
+            childCategory.ChildCatId = childCatId;
+            childCategory.ParentId = parentId;
+            return childCategory;
         }
 
         #endregion
@@ -663,75 +638,51 @@ namespace CMS.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 CategoryRelationId
+        public global::System.Int64 ChildCatId
         {
             get
             {
-                return _CategoryRelationId;
+                return _ChildCatId;
             }
             set
             {
-                if (_CategoryRelationId != value)
+                if (_ChildCatId != value)
                 {
-                    OnCategoryRelationIdChanging(value);
-                    ReportPropertyChanging("CategoryRelationId");
-                    _CategoryRelationId = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("CategoryRelationId");
-                    OnCategoryRelationIdChanged();
+                    OnChildCatIdChanging(value);
+                    ReportPropertyChanging("ChildCatId");
+                    _ChildCatId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ChildCatId");
+                    OnChildCatIdChanged();
                 }
             }
         }
-        private global::System.Int64 _CategoryRelationId;
-        partial void OnCategoryRelationIdChanging(global::System.Int64 value);
-        partial void OnCategoryRelationIdChanged();
+        private global::System.Int64 _ChildCatId;
+        partial void OnChildCatIdChanging(global::System.Int64 value);
+        partial void OnChildCatIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int64 ParentCatID
+        public global::System.Int64 ParentId
         {
             get
             {
-                return _ParentCatID;
+                return _ParentId;
             }
             set
             {
-                OnParentCatIDChanging(value);
-                ReportPropertyChanging("ParentCatID");
-                _ParentCatID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ParentCatID");
-                OnParentCatIDChanged();
+                OnParentIdChanging(value);
+                ReportPropertyChanging("ParentId");
+                _ParentId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ParentId");
+                OnParentIdChanged();
             }
         }
-        private global::System.Int64 _ParentCatID;
-        partial void OnParentCatIDChanging(global::System.Int64 value);
-        partial void OnParentCatIDChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int64 ChildCatID
-        {
-            get
-            {
-                return _ChildCatID;
-            }
-            set
-            {
-                OnChildCatIDChanging(value);
-                ReportPropertyChanging("ChildCatID");
-                _ChildCatID = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("ChildCatID");
-                OnChildCatIDChanged();
-            }
-        }
-        private global::System.Int64 _ChildCatID;
-        partial void OnChildCatIDChanging(global::System.Int64 value);
-        partial void OnChildCatIDChanged();
+        private global::System.Int64 _ParentId;
+        partial void OnParentIdChanging(global::System.Int64 value);
+        partial void OnParentIdChanged();
 
         #endregion
     
@@ -743,16 +694,16 @@ namespace CMS.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_CategoryRelations_Categories", "Category")]
+        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_ChildCategories_Categories2", "Category")]
         public Category Category
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_CategoryRelations_Categories", "Category").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_ChildCategories_Categories2", "Category").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_CategoryRelations_Categories", "Category").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_ChildCategories_Categories2", "Category").Value = value;
             }
         }
         /// <summary>
@@ -764,51 +715,13 @@ namespace CMS.Models
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_CategoryRelations_Categories", "Category");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_ChildCategories_Categories2", "Category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("cms_2Model.FK_CategoryRelations_Categories", "Category", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_CategoryRelations_Categories1", "Category")]
-        public Category Category1
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_CategoryRelations_Categories1", "Category").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_CategoryRelations_Categories1", "Category").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Category> Category1Reference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Category>("cms_2Model.FK_CategoryRelations_Categories1", "Category");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("cms_2Model.FK_CategoryRelations_Categories1", "Category", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Category>("cms_2Model.FK_ChildCategories_Categories2", "Category", value);
                 }
             }
         }
@@ -1633,18 +1546,18 @@ namespace CMS.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_Categories_Templates", "Categories")]
+        [EdmRelationshipNavigationPropertyAttribute("cms_2Model", "FK_Categories_Templates", "Category")]
         public EntityCollection<Category> Categories
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Category>("cms_2Model.FK_Categories_Templates", "Categories");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Category>("cms_2Model.FK_Categories_Templates", "Category");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Category>("cms_2Model.FK_Categories_Templates", "Categories", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Category>("cms_2Model.FK_Categories_Templates", "Category", value);
                 }
             }
         }

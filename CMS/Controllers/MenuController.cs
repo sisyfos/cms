@@ -23,8 +23,9 @@ namespace CMS.Controllers
         public ActionResult ShowMenu()
         {
             var categories = db.Categories.Include("Template");
-            //return View(categories.ToList());            
-            return PartialView(categories.ToList());
+            var sortedCategory = categories.OrderBy(c => c.CatPrio);
+       
+            return PartialView(sortedCategory.ToList());
         }
 
     }
