@@ -18,8 +18,28 @@ namespace CMS.Controllers
 
         public ActionResult Index()
         {
-            var categories = db.Categories.Include("Template");
-            return View(categories.ToList());
+            ViewBag.Message = "Configuration";
+            return View();
+        }
+
+        public ActionResult Page()
+        {
+            ViewBag.Message = "Create pages";
+            var selectList = new SelectList(db.Categories, "CatID", "CatName");
+            return View(selectList);
+        }
+
+        public ActionResult Content()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateCategory(Category model)
+        {
+            model.TempID = 1;
+            var redirectController = new CategoryController();
+            return redirectController.Create(model);
         }
     }
 }

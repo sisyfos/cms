@@ -51,7 +51,7 @@
           <Property Name="CatName" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="CatPrio" Type="bigint" />
           <Property Name="CatDesc" Type="nvarchar(max)" />
-          <Property Name="TempID" Type="bigint" Nullable="false" />
+          <Property Name="TempID" Type="bigint" />
         </EntityType>
         <EntityType Name="ChildCategories">
           <Key>
@@ -127,7 +127,7 @@
           <Property Name="VidDateCreated" Type="timestamp" StoreGeneratedPattern="Computed" />
         </EntityType>
         <Association Name="FK_Categories_Templates">
-          <End Role="Templates" Type="cms_2Model.Store.Templates" Multiplicity="1" />
+          <End Role="Templates" Type="cms_2Model.Store.Templates" Multiplicity="0..1" />
           <End Role="Categories" Type="cms_2Model.Store.Categories" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Templates">
@@ -260,7 +260,11 @@
           <Property Type="String" Name="CatName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Int64" Name="CatPrio" />
           <Property Type="String" Name="CatDesc" MaxLength="Max" FixedLength="false" Unicode="true" />
+<<<<<<< HEAD
           <Property Type="Int64" Name="TempID" Nullable="false" />
+=======
+          <Property Type="Int64" Name="TempID" />
+>>>>>>> 23b284b5700238dea91b3ee1887c75c421d3107f
           <NavigationProperty Name="Template" Relationship="cms_2Model.FK_Categories_Templates" FromRole="Category" ToRole="Template" />
           <NavigationProperty Name="ChildCategories" Relationship="cms_2Model.FK_ChildCategories_Categories2" FromRole="Category" ToRole="ChildCategory" />
           <NavigationProperty Name="Links" Relationship="cms_2Model.FK_Links_Categories" FromRole="Category" ToRole="Link" />
@@ -350,7 +354,11 @@
           <NavigationProperty Name="Category" Relationship="cms_2Model.FK_Videos_Categories" FromRole="Video" ToRole="Category" />
         </EntityType>
         <Association Name="FK_Categories_Templates">
+<<<<<<< HEAD
           <End Type="cms_2Model.Template" Role="Template" Multiplicity="1" />
+=======
+          <End Type="cms_2Model.Template" Role="Template" Multiplicity="0..1" />
+>>>>>>> 23b284b5700238dea91b3ee1887c75c421d3107f
           <End Type="cms_2Model.Category" Role="Category" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Template">
@@ -550,21 +558,41 @@
     </Options>
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
+<<<<<<< HEAD
       <Diagram Name="cms" ZoomLevel="75">
+        <EntityTypeShape EntityType="cms_2Model.Category" Width="1.5" PointX="3" PointY="8.875" Height="3.3263964843750031" />
+        <EntityTypeShape EntityType="cms_2Model.ChildCategory" Width="1.5" PointX="5.25" PointY="1.75" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="cms_2Model.Link" Width="1.5" PointX="5.25" PointY="4" Height="2.5571907552083388" />
+=======
+      <Diagram Name="cms">
         <EntityTypeShape EntityType="cms_2Model.Category" Width="1.5" PointX="3" PointY="8.875" Height="3.3263964843749996" />
         <EntityTypeShape EntityType="cms_2Model.ChildCategory" Width="1.5" PointX="5.25" PointY="1.75" Height="1.5956835937499996" />
         <EntityTypeShape EntityType="cms_2Model.Link" Width="1.5" PointX="5.25" PointY="4" Height="2.5571907552083317" />
+>>>>>>> 23b284b5700238dea91b3ee1887c75c421d3107f
         <EntityTypeShape EntityType="cms_2Model.Picture" Width="1.5" PointX="5.25" PointY="7.375" Height="2.7494921875000031" />
         <EntityTypeShape EntityType="cms_2Model.SiteConfig" Width="1.5" PointX="5.25" PointY="10.875" Height="1.9802864583333388" />
         <EntityTypeShape EntityType="cms_2Model.Template" Width="1.5" PointX="0.75" PointY="9.5" Height="1.9802864583333388" />
         <EntityTypeShape EntityType="cms_2Model.Text" Width="1.5" PointX="5.25" PointY="13.625" Height="2.3648893229166674" />
+<<<<<<< HEAD
+        <EntityTypeShape EntityType="cms_2Model.Video" Width="1.5" PointX="5.25" PointY="16.75" Height="2.5571907552083246" />
+=======
         <EntityTypeShape EntityType="cms_2Model.Video" Width="1.5" PointX="5.25" PointY="16.75" Height="2.5571907552083388" />
+>>>>>>> 23b284b5700238dea91b3ee1887c75c421d3107f
         <AssociationConnector Association="cms_2Model.FK_Categories_Templates" >
           <ConnectorPoint PointX="2.25" PointY="10.490143229166669" />
           <ConnectorPoint PointX="3" PointY="10.490143229166669" />
         </AssociationConnector>
         <AssociationConnector Association="cms_2Model.FK_ChildCategories_Categories2" >
           <ConnectorPoint PointX="3.75" PointY="8.875" />
+<<<<<<< HEAD
+          <ConnectorPoint PointX="3.75" PointY="2.5478417968750016" />
+          <ConnectorPoint PointX="5.25" PointY="2.5478417968750016" />
+        </AssociationConnector>
+        <AssociationConnector Association="cms_2Model.FK_Links_Categories" >
+          <ConnectorPoint PointX="4.1562525" PointY="8.875" />
+          <ConnectorPoint PointX="4.1562525" PointY="5.2785953776041694" />
+          <ConnectorPoint PointX="5.25" PointY="5.2785953776041694" />
+=======
           <ConnectorPoint PointX="3.75" PointY="2.547841796875" />
           <ConnectorPoint PointX="5.25" PointY="2.547841796875" />
         </AssociationConnector>
@@ -572,26 +600,41 @@
           <ConnectorPoint PointX="4.1562525" PointY="8.875" />
           <ConnectorPoint PointX="4.1562525" PointY="5.2785953776041659" />
           <ConnectorPoint PointX="5.25" PointY="5.2785953776041659" />
+>>>>>>> 23b284b5700238dea91b3ee1887c75c421d3107f
         </AssociationConnector>
         <AssociationConnector Association="cms_2Model.FK_Pictures_Categories" >
           <ConnectorPoint PointX="4.5" PointY="9.4997460937500016" />
           <ConnectorPoint PointX="5.25" PointY="9.4997460937500016" />
         </AssociationConnector>
         <AssociationConnector Association="cms_2Model.FK_SiteConfigs_Categories" >
+<<<<<<< HEAD
+          <ConnectorPoint PointX="4.5" PointY="11.538198242187502" />
+          <ConnectorPoint PointX="5.25" PointY="11.538198242187502" />
+        </AssociationConnector>
+        <AssociationConnector Association="cms_2Model.FK_Texts_Categories" >
+          <ConnectorPoint PointX="3.75" PointY="12.201396484375003" />
+=======
           <ConnectorPoint PointX="4.5" PointY="11.5381982421875" />
           <ConnectorPoint PointX="5.25" PointY="11.5381982421875" />
         </AssociationConnector>
         <AssociationConnector Association="cms_2Model.FK_Texts_Categories" >
           <ConnectorPoint PointX="3.75" PointY="12.201396484375" />
+>>>>>>> 23b284b5700238dea91b3ee1887c75c421d3107f
           <ConnectorPoint PointX="3.75" PointY="14.807444661458334" />
           <ConnectorPoint PointX="4.0729191666666669" PointY="14.807444661458334" />
           <ConnectorPoint PointX="4.2395858333333329" PointY="14.807444661458334" />
           <ConnectorPoint PointX="5.25" PointY="14.807444661458334" />
         </AssociationConnector>
         <AssociationConnector Association="cms_2Model.FK_Videos_Categories" >
+<<<<<<< HEAD
+          <ConnectorPoint PointX="4.1562525" PointY="12.201396484375003" />
+          <ConnectorPoint PointX="4.1562525" PointY="18.028595377604162" />
+          <ConnectorPoint PointX="5.25" PointY="18.028595377604162" />
+=======
           <ConnectorPoint PointX="4.1562525" PointY="12.201396484375" />
           <ConnectorPoint PointX="4.1562525" PointY="18.028595377604169" />
           <ConnectorPoint PointX="5.25" PointY="18.028595377604169" />
+>>>>>>> 23b284b5700238dea91b3ee1887c75c421d3107f
         </AssociationConnector>
       </Diagram>
     </Diagrams>
