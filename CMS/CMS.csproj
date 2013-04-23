@@ -172,6 +172,7 @@
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\PictureController.cs" />
     <Compile Include="Controllers\ShowCategoryController.cs" />
+    <Compile Include="Controllers\ShowCssController.cs" />
     <Compile Include="Controllers\SiteConfigController.cs" />
     <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Controllers\TextController.cs" />
@@ -242,6 +243,7 @@
     <Content Include="bin\WebMatrix.Data.xml" />
     <Content Include="bin\WebMatrix.WebData.dll" />
     <Content Include="bin\WebMatrix.WebData.xml" />
+    <Content Include="Content\Office.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -517,6 +519,27 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\test.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ShowCss\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ShowCss\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ShowCss\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ShowCss\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ShowCss\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_ShowCss.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_LayoutTemp.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" type="text/css" href="@Html.Partial("_ShowCss")" />
+    </head>
+    <body>
+        <header>
+        <div class="float-login">
+                    <p class="site-title">@Html.Action("SiteInfo", "Home")</p>
+                    <section id="login">
+                        @Html.Partial("_LoginPartial")
+                    </section>                        
+                </div>
+                <div class="float-left">
+                    <p class="site-title">@Html.ActionLink("Sisyfos", "Index", "Home")</p>
+                </div>
+                <div class="float-center">
+                    <hgroup class="title">
+                <h2>@ViewBag.Message</h2>
+            </hgroup>
+                </div>
+
+              <nav>
+                    @Html.Action("ShowMenu", "Menu")                    
+                    </nav>
+        </header>
+        <div id="body">
+        
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>
+                </div>
+            </div>
+        </footer>
+
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+    </body>
+</html>
