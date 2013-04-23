@@ -18,7 +18,11 @@ using System.Runtime.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
+<<<<<<< HEAD
 [assembly: EdmRelationshipAttribute("cms_2Model", "FK_Categories_Templates", "Template", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CMS.Models.Template), "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Category), true)]
+=======
+[assembly: EdmRelationshipAttribute("cms_2Model", "FK_Categories_Templates", "Template", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CMS.Models.Template), "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Category), true)]
+>>>>>>> 23b284b5700238dea91b3ee1887c75c421d3107f
 [assembly: EdmRelationshipAttribute("cms_2Model", "FK_ChildCategories_Categories2", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(CMS.Models.Category), "ChildCategory", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.ChildCategory), true)]
 [assembly: EdmRelationshipAttribute("cms_2Model", "FK_Links_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CMS.Models.Category), "Link", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Link), true)]
 [assembly: EdmRelationshipAttribute("cms_2Model", "FK_Pictures_Categories", "Category", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(CMS.Models.Category), "Picture", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(CMS.Models.Picture), true)]
@@ -294,13 +298,11 @@ namespace CMS.Models
         /// </summary>
         /// <param name="catID">Initial value of the CatID property.</param>
         /// <param name="catName">Initial value of the CatName property.</param>
-        /// <param name="tempID">Initial value of the TempID property.</param>
-        public static Category CreateCategory(global::System.Int64 catID, global::System.String catName, global::System.Int64 tempID)
+        public static Category CreateCategory(global::System.Int64 catID, global::System.String catName)
         {
             Category category = new Category();
             category.CatID = catID;
             category.CatName = catName;
-            category.TempID = tempID;
             return category;
         }
 
@@ -409,9 +411,9 @@ namespace CMS.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Int64 TempID
+        public Nullable<global::System.Int64> TempID
         {
             get
             {
@@ -426,8 +428,8 @@ namespace CMS.Models
                 OnTempIDChanged();
             }
         }
-        private global::System.Int64 _TempID;
-        partial void OnTempIDChanging(global::System.Int64 value);
+        private Nullable<global::System.Int64> _TempID;
+        partial void OnTempIDChanging(Nullable<global::System.Int64> value);
         partial void OnTempIDChanged();
 
         #endregion

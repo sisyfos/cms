@@ -172,6 +172,7 @@
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\PictureController.cs" />
     <Compile Include="Controllers\ShowCategoryController.cs" />
+    <Compile Include="Controllers\ShowCssController.cs" />
     <Compile Include="Controllers\SiteConfigController.cs" />
     <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Controllers\TextController.cs" />
@@ -242,6 +243,7 @@
     <Content Include="bin\WebMatrix.Data.xml" />
     <Content Include="bin\WebMatrix.WebData.dll" />
     <Content Include="bin\WebMatrix.WebData.xml" />
+    <Content Include="Content\Office.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -299,12 +301,9 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="images_upload\images_upload0d1d6547-c531-4785-a18b-f5b956e121bd.JPG" />
-<<<<<<< HEAD
     <Content Include="images_upload\images_upload932fd416-2db4-481d-85fa-a67660440553.JPG" />
     <Content Include="images_upload\images_uploada3a982fe-c09e-4cf4-ba25-5868da14dadb.JPG" />
     <Content Include="images_upload\images_uploadf86a3ff8-05bb-478d-a7f9-4e7b8265bfe8.JPG" />
-=======
->>>>>>> caf5e1c80209baa14a2cc12bdd68a36274dccab3
     <Content Include="Scripts\jquery-1.7.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
@@ -486,14 +485,10 @@
     <Content Include="Views\Menu\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-    <Content Include="Views\SiteConfig\Index.cshtml" />
+    <Content Include="Views\Image\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\SiteConfig\Details.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\SiteConfig\Create.cshtml" />
+    <Content Include="Views\Home\Imagenew.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\SiteConfig\Edit.cshtml" />
@@ -511,25 +506,54 @@
     <Content Include="Views\Shared\ShowMenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
-=======
-    <Content Include="Views\Image\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
->>>>>>> caf5e1c80209baa14a2cc12bdd68a36274dccab3
     <Content Include="Views\Home\Imagenew.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Admin\CategoryPartial.cshtml" />
-  </ItemGroup>
-<<<<<<< HEAD
   <ItemGroup>
     <Content Include="Views\Shared\ShowStartPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\test.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+<<<<<<< HEAD
+    <Content Include="Views\ShowCss\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ShowCss\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ShowCss\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ShowCss\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ShowCss\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_ShowCss.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_LayoutTemp.cshtml" />
 =======
->>>>>>> caf5e1c80209baa14a2cc12bdd68a36274dccab3
+    <Content Include="Views\Admin\_AdminHeaderPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\_CategoryCreatePartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\_CategoryEditPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\_ContentPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\Content.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\Page.cshtml" />
+>>>>>>> 4fed3b1f845c1e83f3ca12830d4d585114fc400a
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

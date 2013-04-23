@@ -230,6 +230,17 @@ ul#menu {
         .featured p {
             font-size: 1.1em;
         }
+<<<<<<< HEAD
+=======
+/* article */
+.halfwidth
+{
+    float: left;
+    width: 50%;
+    background-color: #7ac0da;
+    padding: 10px
+    }
+>>>>>>> 23b284b5700238dea91b3ee1887c75c421d3107f
 
 /* page titles */
 hgroup.title {
@@ -424,7 +435,7 @@ label.checkbox {
     display: inline;
 }
 
-input, textarea {
+input, select, textarea {
     border: 1px solid #e2e2e2;
     background: #fff;
     color: #333;
@@ -538,7 +549,7 @@ th {
     font-size: 1.2em;
     text-align: left;
     border: none 0px;
-    padding-left: 0;
+    padding: 0.25em 2em 0.25em 0em;
 }
 
     th a {

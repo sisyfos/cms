@@ -24,7 +24,11 @@ namespace CMS.Controllers
         {
             var categories = db.Categories.Include("Template");
             var sortedCategory = categories.OrderBy(c => c.CatPrio);
+<<<<<<< HEAD
        
+=======
+            
+>>>>>>> 23b284b5700238dea91b3ee1887c75c421d3107f
             return PartialView(sortedCategory.ToList());
         }
 

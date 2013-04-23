@@ -3,23 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-<<<<<<< HEAD
 using CMS.Models;
-using System.IO;
-using CSharpVitamins;
-
-=======
 using CMS.Controllers;
 using System.IO;
+using CSharpVitamins;
 using System.Web.Helpers;
-using CMS.Models;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Web.UI.WebControls;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
->>>>>>> caf5e1c80209baa14a2cc12bdd68a36274dccab3
 namespace CMS.Controllers
 {
     public class HomeController : Controller
@@ -28,11 +22,6 @@ namespace CMS.Controllers
 
         public ActionResult Index()
         {
-<<<<<<< HEAD
-=======
-            ViewBag.Message = "Create and design your own website!";
-
->>>>>>> caf5e1c80209baa14a2cc12bdd68a36274dccab3
             return View();
         }
 
@@ -72,6 +61,7 @@ namespace CMS.Controllers
             return View();
         }
 
+<<<<<<< HEAD
         public ActionResult Imagenew()
         {
             var model = new ImageModel()
@@ -81,6 +71,8 @@ namespace CMS.Controllers
             };
             return View(model);
         }
+
+
 
         [HttpPost]
         public ActionResult Imagenew(ImageModel model)
@@ -98,6 +90,9 @@ namespace CMS.Controllers
             return RedirectToAction("Imagenew");
         }
 
+
+=======
+>>>>>>> 4fed3b1f845c1e83f3ca12830d4d585114fc400a
         public ActionResult Contact()
         {
             ViewBag.Message = "Create and design your own website!";
@@ -105,16 +100,11 @@ namespace CMS.Controllers
             return View();
         }
 
-        public ActionResult Imagenew()
-        {
-            var model = new ImageModel()
-            {
-                Images = Directory.EnumerateFiles(Server.MapPath("~/images_upload/"))
-                .Select(fn => "~/images_upload/" + Path.GetFileName(fn))
-            };
-            return View(model);
-        }
+<<<<<<< HEAD
+        
 
+=======
+>>>>>>> 4fed3b1f845c1e83f3ca12830d4d585114fc400a
         [ChildActionOnly]
         public ActionResult test()
         {
@@ -125,22 +115,11 @@ namespace CMS.Controllers
             };
             return PartialView(model);
         }
+<<<<<<< HEAD
 
-        [HttpPost]
-        public ActionResult Imagenew(ImageModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                string fileName = ShortGuid.NewGuid().ToString();
-                string serverPath = Server.MapPath("~");
-                string imagesPath = serverPath + "/images_upload";
-                string thumbPath = imagesPath + "/images_upload";
-                string fullPath = imagesPath + "/images_upload";
-                ImageModel.ResizeAndSave(thumbPath, fileName, model.ImageUploaded.InputStream, 80, true);
-                ImageModel.ResizeAndSave(fullPath, fileName, model.ImageUploaded.InputStream, 600, true);
-            }
-            return RedirectToAction("Imagenew");
-        }
+       
 
+=======
+>>>>>>> 4fed3b1f845c1e83f3ca12830d4d585114fc400a
     }
 }
