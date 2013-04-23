@@ -515,23 +515,18 @@
     <Content Include="Views\Shared\test.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\ShowCss\Index.cshtml" />
     <Content Include="Views\Admin\_AdminHeaderPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\ShowCss\Details.cshtml" />
     <Content Include="Views\Admin\_CategoryCreatePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\ShowCss\Create.cshtml" />
     <Content Include="Views\Admin\_CategoryEditPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\ShowCss\Edit.cshtml" />
     <Content Include="Views\Admin\_ContentPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\ShowCss\Delete.cshtml" />
     <Content Include="Views\Admin\Content.cshtml" />
   </ItemGroup>
   <ItemGroup>

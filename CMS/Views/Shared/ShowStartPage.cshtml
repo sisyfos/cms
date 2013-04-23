@@ -1,12 +1,10 @@
 ﻿@model CMS.Models.Category
-@section css {
-    <link href="~/Content/@Model.Template.TempURL" rel="stylesheet"/>
-}
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutTemp.cshtml";
 }
-<link href="~/Content/@Model.Template.TempURL" rel="stylesheet"/>
+
 <h2>@Html.DisplayFor(model => model.CatName)</h2>
 <h3>@Html.DisplayFor(model => model.CatDesc)</h3>
 
